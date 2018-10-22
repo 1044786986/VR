@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackground">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <!--android:layout_below="@id/linearLayout_search"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_200"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout_float"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_100"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_150"
+                android:background="@drawable/bg_home_float"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/logo_300"
+                        android:layout_width="@dimen/dp_30"
+                        android:layout_height="@dimen/dp_30" />
+                    <TextView
+                        android:text="发现街景"
+                        android:textSize="@dimen/sp_15"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:text="超高人气景点榜"
+                    android:textSize="@dimen/sp_15"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="和你说个笑话，S8是LPL最有希望夺冠的一年"
+                    android:textSize="@dimen/sp_13"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout_search"
+        android:padding="@dimen/dp_10"
+        android:background="#99F4F4F4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50">
+        <LinearLayout
+            android:id="@+id/linearLayout_city"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvCity"
+                android:text="厦门"
+                android:textSize="@dimen/sp_15"
+                android:maxLines="1"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/arrow_down"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20" />
+        </LinearLayout>
+
+        <View
+            android:background="@color/rvLine"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_width="@dimen/dp_0_1"
+            android:layout_height="match_parent"/>
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/svHome"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:indeterminateTint="@color/appTheme"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
