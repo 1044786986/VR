@@ -23,4 +23,5 @@
     <color name="selectEditText">#03a9f4</color>
     <color name="camera">#112222</color>
     <color name="home_top">#FF4F00</color>
+    <color name="select_city_float">#90EFB336</color>
 </resources>

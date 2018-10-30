@@ -23,7 +23,7 @@
         android:text="A"
         android:textSize="@dimen/sp_30"
         android:textColor="#fff"
-        android:background="@color/appTheme"
+        android:background="@drawable/bg_select_city_float"
         android:visibility="gone"
         android:gravity="center"
         android:layout_centerInParent="true"

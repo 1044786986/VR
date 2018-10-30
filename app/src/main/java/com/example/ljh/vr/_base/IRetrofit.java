@@ -1,5 +1,6 @@
 package com.example.ljh.vr._base;
 
+import com.example.ljh.vr.home.HomeResBean;
 import com.example.ljh.vr.login.LoginBean;
 import com.example.ljh.vr.login.RegisterResponseBean;
 
@@ -26,4 +27,8 @@ public interface IRetrofit {
     @FormUrlEncoded
     @POST("msgPassword.php")
     Observable<BaseBean> sendMsg(@Field("username") String username);
+
+    @FormUrlEncoded
+    @POST("home")
+    Observable<HomeResBean> getRecommendData(@Field("id") String id);
 }

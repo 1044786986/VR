@@ -40,26 +40,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tvName"
                 android:text="千山风景区"
                 android:textSize="@dimen/sp_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/ivHot"
+                android:src="@drawable/hot5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_20" />
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></LinearLayout>
-            <LinearLayout
+                android:id="@+id/linearLayout_label"
+                android:orientation="horizontal"
                 android:layout_marginTop="@dimen/dp_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:text="五佛顶"
-                    android:textSize="@dimen/sp_11"
-                    android:textColor="#fff"
-                    android:background="@drawable/bg_home_item_label"
-                    android:padding="@dimen/dp_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tvLabel1"-->
+                    <!--android:text="五佛顶"-->
+                    <!--android:textSize="@dimen/sp_11"-->
+                    <!--android:textColor="#fff"-->
+                    <!--android:visibility="gone"-->
+                    <!--android:background="@drawable/bg_home_item_label"-->
+                    <!--android:padding="@dimen/dp_2"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tvLabel2"-->
+                    <!--android:text=""-->
+                    <!--android:textSize="@dimen/sp_11"-->
+                    <!--android:textColor="#fff"-->
+                    <!--android:background="@drawable/bg_home_item_label"-->
+                    <!--android:padding="@dimen/dp_2"-->
+                    <!--android:visibility="gone"-->
+                    <!--android:layout_marginLeft="@dimen/dp_5"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tvLabel3"-->
+                    <!--android:text=""-->
+                    <!--android:textSize="@dimen/sp_11"-->
+                    <!--android:textColor="#fff"-->
+                    <!--android:visibility="gone"-->
+                    <!--android:background="@drawable/bg_home_item_label"-->
+                    <!--android:padding="@dimen/dp_2"-->
+                    <!--android:layout_marginLeft="@dimen/dp_5"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
             </LinearLayout>
+            <TextView
+                android:id="@+id/tvAddress"
+                android:text="广东省广州市"
+                android:textSize="@dimen/sp_11"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>
