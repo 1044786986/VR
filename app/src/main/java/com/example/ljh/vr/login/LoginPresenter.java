@@ -6,6 +6,7 @@ import android.os.CountDownTimer;
 import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr._base.EventBusBean;
 import com.example.ljh.vr._base.MyRetrofitCallback;
+import com.example.ljh.vr.main.MainPresenter;
 import com.example.ljh.vr.utils.ShowTipUtils;
 import com.example.ljh.vr.utils.TransformationUtils;
 
@@ -36,7 +37,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter{
                 }
                 loginView.hideProgressBar();
                 LoginBean.LoginResponse value = (LoginBean.LoginResponse)o;
-                if (value.isStatus()) {
+                if (value.getResponseCode() == 0) {
                     value.setUsername(loginBean.getUsername());
                     //设置当前用户信息
                     saveCurUser(value);
@@ -70,7 +71,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter{
 
     @Override
     public void msgLogin(final String username) {
-        if(username == "" || username == null || username.length() != 11){
+        if(username.equals("") || username.length() != 11){
             ShowTipUtils.toastShort(loginView.getContext(),"请输入正确的用户名");
             return;
         }
@@ -144,7 +145,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter{
         editor.putBoolean(KeyApp.LOGIN_STATUS,response.isStatus());
         editor.commit();
 
-//        MainPresenter.CUR_USER = response.getUsername();
+        MainPresenter.curUser = response.getUsername();
     }
 
     @Override

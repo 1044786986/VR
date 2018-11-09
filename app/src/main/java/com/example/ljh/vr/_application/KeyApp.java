@@ -24,7 +24,8 @@ public class KeyApp {
     /**
      * EventBus
      */
-
+    public static final String EB_LOGIN_SUCCESS = "loginSuccess";
+    public static final String EB_LOGOUT = "logout";
 
     /**
      * StartActivityForResult Code
@@ -32,6 +33,7 @@ public class KeyApp {
     /**
      * requestCode
      */
+    public static final int CHIOSE_PHOTO = 10000;
 
     /**
      * resultCode
@@ -39,8 +41,23 @@ public class KeyApp {
     public static final int RESULT_CODE_SELECT_CITY = 20000;
     //
 
-    //Request intent Key
+    /**
+     * request intent Key
+     */
 
-    //Result Intent Key
+    /**
+     * result Intent Key
+     */
     public static final String RESULT_KEY_SELECT_CITY = "city";
+
+    /**
+     * intent key
+     */
+    public static final String INTENT_KEY_INFO = "id";
+    public static final String INTENT_KEY_ALBUM = "id";
+    public static final String INTENT_KEY_NORMAL_PICTURE = "urlList";
+    public static final String INTENT_KEY_NORMAL_PICTURE2 = "bytesList";
+    public static final String INTENT_KEY_NORMAL_PICTURE3 = "curPos";
+    public static final String INTENT_KEY_VR_PICTURE = "url";
+    public static final String INTENT_KEY_SHARE_CONTENT = "shareTop";
 }

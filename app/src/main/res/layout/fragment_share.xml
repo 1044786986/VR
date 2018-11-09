@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/bg_share">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:orientation="horizontal"
+        android:background="@color/appTheme"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40">
+        <ImageView
+            android:id="@+id/ivWrite"
+            android:src="@drawable/write_white_100"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25" />
+    </LinearLayout>
+
+    <!--<ScrollView-->
+        <!--android:id="@+id/scrollViewShare"-->
+        <!--android:layout_below="@id/header"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_below="@id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvShare"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</android.support.v4.widget.SwipeRefreshLayout>
+    <!--</ScrollView>-->
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/ivNothing"
+        android:visibility="gone"
+        android:src="@drawable/nothing_data_tip"
+        android:layout_centerInParent="true"
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="@dimen/dp_150" />
+
+</RelativeLayout>

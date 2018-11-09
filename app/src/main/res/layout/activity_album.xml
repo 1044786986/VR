@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackground">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:orientation="horizontal"
+        android:background="@color/appTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:src="@drawable/back_white"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25" />
+    </LinearLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tbAlbum"
+        app:tabSelectedTextColor="@color/appTheme"
+        app:tabIndicatorColor="@color/appTheme"
+        app:tabTextColor="@color/normalText"
+        android:layout_below="@id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"></android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpAlbum"
+        android:layout_below="@id/tbAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+
+    <ImageView
+        android:id="@+id/ivNothing"
+        android:visibility="gone"
+        android:src="@drawable/nothing_data_tip"
+        android:layout_centerInParent="true"
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="@dimen/dp_150" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:indeterminateTint="@color/appTheme"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

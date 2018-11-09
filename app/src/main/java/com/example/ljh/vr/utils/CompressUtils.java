@@ -5,12 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.socks.library.KLog;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -19,6 +21,7 @@ import java.io.IOException;
 public class CompressUtils {
     private  final int maxSize = 200;   //限定图片最大200kb
     private final int bitMaxSize = 1000;
+    private static final int QUALITY = 50;
     private  int screenWidth;           //屏幕X大小
     private  int screenHeight;          //Y大小
 //    private Handler handler = new Handler(Looper.getMainLooper());
@@ -40,7 +43,10 @@ public class CompressUtils {
         return compressUtils;
     }
 
-    public Bitmap compress(Bitmap bitmap,int width,int height){
+    public Bitmap compress(Bitmap bitmap,int width,int height,int size){
+        if(size == 0){
+            size = maxSize;
+        }
         if(width == 0){
             width = screenWidth;
         }
@@ -69,12 +75,12 @@ public class CompressUtils {
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmapResult.compress(Bitmap.CompressFormat.JPEG,quality,byteArrayOutputStream);
-        while (byteArrayOutputStream.toByteArray().length > maxSize){
+        while (byteArrayOutputStream.toByteArray().length > size){
             byteArrayOutputStream.reset();
             quality -= 10;
             bitmapResult.compress(Bitmap.CompressFormat.JPEG,quality,byteArrayOutputStream);
             KLog.i("byteArrayOutputStream = " + byteArrayOutputStream.size());
-            if(quality <= 30){
+            if(quality <= QUALITY){
                 break;
             }
         }
@@ -92,7 +98,10 @@ public class CompressUtils {
         return bitmapResult;
     }
 
-    public Bitmap compress(byte[] bytes,int width,int height){
+    public Bitmap compress(byte[] bytes,int width,int height,int size){
+        if(size == 0){
+            size = maxSize;
+        }
         if(width == 0){
             width = screenWidth;
         }
@@ -107,12 +116,12 @@ public class CompressUtils {
         bitmapResult = BitmapFactory.decodeByteArray(bytes,0,bytes.length,options);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmapResult.compress(Bitmap.CompressFormat.JPEG,quality,byteArrayOutputStream);
-        while (byteArrayOutputStream.toByteArray().length > maxSize){
+        while (byteArrayOutputStream.toByteArray().length > size){
             byteArrayOutputStream.reset();
             quality -= 10;
             bitmapResult.compress(Bitmap.CompressFormat.JPEG,quality,byteArrayOutputStream);
             KLog.i("byteArrayOutputStream = " + byteArrayOutputStream.size());
-            if(quality <= 30){
+            if(quality <= QUALITY){
                 break;
             }
         }
@@ -124,5 +133,75 @@ public class CompressUtils {
         }
         KLog.i("aaa","compress.size = " + bitmapResult.getByteCount() / 1024);
         return bitmapResult;
+    }
+
+    public Bitmap compress(String filePath,int width,int height,int size){
+        measure(width,height,size);
+        KLog.i("aaa","compress.width = " + width + "    " + height + "  " + size);
+//        if(size == 0){
+//            size = maxSize;
+//        }
+//        if(width == 0){
+//            width = screenWidth;
+//        }
+//        if(height == 0){
+//            height = screenHeight;
+//        }
+        Bitmap bitmapResult = null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.outWidth = width;
+        options.outHeight = height;
+        bitmapResult = BitmapFactory.decodeFile(filePath,options);
+        compressQuality(bitmapResult,size);
+        return bitmapResult;
+    }
+
+    public Bitmap compress(Uri uri,Context context,int width,int height,int size){
+        if(uri == null){
+            return null;
+        }
+        Bitmap bitmapResult = null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.outWidth = width;
+        options.outHeight = height;
+        try {
+            bitmapResult = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri),null,options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return bitmapResult;
+    }
+
+    private void measure(int width,int height,int size){
+        if(size == 0){
+            size = maxSize;
+        }
+        if(width == 0){
+            width = screenWidth;
+        }
+        if(height == 0){
+            height = screenHeight;
+        }
+    }
+
+    private void compressQuality(Bitmap bitmap,int size){
+        int quality = 100;
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,quality,byteArrayOutputStream);
+        while (byteArrayOutputStream.toByteArray().length > size){
+            byteArrayOutputStream.reset();
+            quality -= 10;
+            bitmap.compress(Bitmap.CompressFormat.JPEG,quality,byteArrayOutputStream);
+            KLog.i("byteArrayOutputStream = " + byteArrayOutputStream.size());
+            if(quality <= QUALITY){
+                break;
+            }
+        }
+        try {
+            byteArrayOutputStream.reset();
+            byteArrayOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

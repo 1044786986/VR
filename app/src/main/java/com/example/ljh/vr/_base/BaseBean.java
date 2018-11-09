@@ -1,17 +1,19 @@
 package com.example.ljh.vr._base;
 
 public class BaseBean{
-    private int responseCode;
+    private int code;
+    private String error;
 //    private T data;
     private Object data;
 
-//    public SearchLogisticsBean getData() {
-//        return data;
-//    }
-//
-//    public void setData(SearchLogisticsBean data) {
-//        this.data = data;
-//    }
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
         public Object getData() {
         return data;
     }
@@ -20,19 +22,11 @@ public class BaseBean{
         this.data = data;
     }
 
-    public int getResponseCode() {
-        return responseCode;
+    public int getCode() {
+        return code;
     }
 
-    public void setResponseCode(int responseCode) {
-        this.responseCode = responseCode;
+    public void setCode(int code) {
+        this.code = code;
     }
-
-//    public T getData() {
-//        return data;
-//    }
-
-//    public void setData(T data) {
-//        this.data = data;
-//    }
 }

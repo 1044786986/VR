@@ -48,10 +48,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
-    //     Optional, if you use support library fragments:
-    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
+
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+//    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+//    //     Optional, if you use support library fragments:
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
 
     implementation 'com.github.zhaokaiqiang.klog:library:0.0.1'
 //    implementation 'com.google.vr:sdk-panowidget:1.80.0'
@@ -70,6 +71,7 @@ dependencies {
     implementation 'com.githang:status-bar-compat:latest.integration'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
     implementation 'com.belerweb:pinyin4j:2.5.0'
+    implementation 'com.github.markzhai:galleryfinal:1.0.0'
 
     implementation(name:'sdk-panowidget-1.170.0', ext:'aar')
     implementation(name:'sdk-audio-1.170.0', ext:'aar')

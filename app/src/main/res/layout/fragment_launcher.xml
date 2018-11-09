@@ -15,7 +15,7 @@
             android:layout_height="@dimen/dp_150"
             android:src="@drawable/logo_300" />
         <TextView
-            android:text="Origin·起源物流"
+            android:text="Origin·发现街景"
             android:textSize="@dimen/sp_18"
             android:textColor="@color/appTheme"
             android:gravity="center"

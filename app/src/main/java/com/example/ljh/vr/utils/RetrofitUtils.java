@@ -13,7 +13,7 @@ public class RetrofitUtils<T>{
     private static RetrofitUtils mRetrofitUtils;
     private Retrofit mRetrofit;
     private IRetrofit mIRetrofit;
-    public static final String BASE_URL = "http://www.liangjiehao.top/vr/servlet/";
+    public static final String BASE_URL = "http://www.liangjiehao.top/vr/php/";
 //    public static final String BASE_URL = "http://xunself.top/oe/ljh/";
     private static final int READ_TIME = 5;
     private static final int CONN_TIME = 5;

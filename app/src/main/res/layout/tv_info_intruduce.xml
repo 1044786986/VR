@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textView"
+    android:text="塞乐的呢撒离开你的撒看来你大理石可能的"
+    android:textSize="@dimen/sp_14"
+    android:textColor="@color/normalText"
+    android:padding="@dimen/dp_5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+</TextView>

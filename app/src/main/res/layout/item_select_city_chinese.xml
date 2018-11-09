@@ -9,9 +9,9 @@
     <TextView
         android:id="@+id/textView"
         android:text="广州"
-        android:textSize="@dimen/sp_15"
-        android:padding="@dimen/dp_5"
-        android:layout_width="wrap_content"
+        android:textSize="@dimen/sp_16"
+        android:padding="@dimen/dp_8"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <View

@@ -35,12 +35,13 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_300"
         android:supportsRtl="true"
-        android:theme="@style/MyTheme">
+        android:theme="@style/AppTheme">
         <activity android:name=".main.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,20 +55,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity"/>
-        <activity android:name=".login.RegisterActivity"/>
-        <!--<activity android:name=".select_city.OnSelectCityActivity"/>-->
-        <activity android:name=".select_city.OnSelectCityActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".login.LoginActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".login.RegisterActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".select_city.SelectCityActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".setting.SettingActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".info.InfoActivity" android:theme="@style/MyTheme"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".info.AlbumActivity" android:theme="@style/MyTheme"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".normal_picture.NormalPictureActivity" android:theme="@style/MyTheme"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".vr_picture.VrPictureActivity" android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".share.WriteShareActivity" android:theme="@style/MyTheme"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".share.ShareCommentActivity" android:theme="@style/MyTheme"
+            android:configChanges="orientation|screenSize"/>
     </application>
 
 </manifest>

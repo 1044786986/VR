@@ -1,8 +1,24 @@
 package com.example.ljh.vr.utils;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.ByteArrayOutputStream;
+
 public class TransformationUtils {
+    private static TransformationUtils mTransformationUtils;
     private static final String[] CHINA_NUMBER = {"零","一","二","三","四","五","六","七","八","九"} ;
     private static final String[] ARAB_NUMBER = {"0","1","2","3","4","5","6","7","8","9"};
+
+    public static TransformationUtils getInstance(){
+        synchronized (TransformationUtils.class){
+            if(mTransformationUtils == null){
+                mTransformationUtils = new TransformationUtils();
+            }
+        }
+        return mTransformationUtils;
+    }
 
     public static String duration2min(long duration){
 //        KLog.i(duration+"");
@@ -117,5 +133,24 @@ public class TransformationUtils {
 
     public interface OnChinaToArabCallback{
         void onSuccess(String result);
+    }
+
+
+    public byte[] bitmap2bytes(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    public Bitmap bytes2bitmap(byte bytes[]){
+        return BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+    }
+
+    public String ymdhsi2ymd(String s){
+        if(s == null || s == ""){
+            return s;
+        }
+        String strings[] = s.split(" ");
+        return strings[0];
     }
 }

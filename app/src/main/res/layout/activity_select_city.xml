@@ -4,15 +4,83 @@
     android:layout_height="match_parent"
     android:background="@color/appBackground">
 
+    <LinearLayout
+        android:id="@+id/header"
+        android:orientation="horizontal"
+        android:background="@color/appTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:src="@drawable/back_white"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25" />
+    </LinearLayout>
 
+<!--<LinearLayout-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_below="@id/header"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <ScrollView
+        android:layout_below="@id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="vertical"
+        android:layout_below="@id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></LinearLayout>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="最近访问"
+            android:padding="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_recently"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+
+
+        <TextView
+            android:text="热门城市"
+            android:padding="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/linearLayout_hotCity"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+    <RelativeLayout
+        android:descendantFocusability="blocksDescendants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvSelectCity"
+            android:nestedScrollingEnabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
+    </LinearLayout>
+    </ScrollView>
+<!--</LinearLayout>-->
+
 
     <com.example.ljh.vr.ui.AZSideBarView
         android:id="@+id/azSideBarView"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="@dimen/dp_40"
         android:layout_marginBottom="@dimen/dp_40"
         android:layout_width="@dimen/dp_20"

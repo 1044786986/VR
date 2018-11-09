@@ -24,6 +24,7 @@ public class MainContract {
         void permissionSuccess();                       //检查授权成功后调用
         void sureQuit(int code);                        //再次确定是否退出程序
         void reLoadView();                              //重新加载页面
+        void setHomeCity(String city);
     }
 
     interface MainModel{

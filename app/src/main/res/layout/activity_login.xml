@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/back_gray" />
 
     <ProgressBar
         android:id="@+id/pbLogin"
@@ -33,7 +33,7 @@
         android:layout_marginTop="@dimen/dp_30"
         android:layout_width="@dimen/dp_120"
         android:layout_height="@dimen/dp_120"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/logo_300" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/people_blue_64"
             android:layout_gravity="center"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30" />
@@ -57,7 +57,7 @@
             android:padding="@dimen/dp_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="用户名:" />
+            android:hint="用户名" />
     </LinearLayout>
     <View
         android:background="@color/rvLine"
@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/key_blue_64"
             android:layout_gravity="center"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30" />
@@ -88,7 +88,7 @@
             android:padding="@dimen/dp_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="密码:" />
+            android:hint="密码" />
     </LinearLayout>
     <View
         android:background="@color/rvLine"
@@ -163,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/wechat_128"
                 android:layout_width="@dimen/dp_50"
                 android:layout_height="@dimen/dp_50" />
             <TextView
@@ -204,7 +204,7 @@
             <ImageView
                 android:layout_width="51dp"
                 android:layout_height="@dimen/dp_50"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/short_msg_red_128" />
             <TextView
                 android:text="短信动态密码"
                 android:textSize="@dimen/sp_12"

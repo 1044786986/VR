@@ -11,9 +11,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeModel implements HomeContract.HomeModel{
     @Override
-    public void getData(String id, final MyRetrofitCallback callback) {
+    public void getRecommendData(final MyRetrofitCallback callback) {
         RetrofitUtils.getInstance().getIRetrofitRx2Gson()
-                .getRecommendData(id)
+                .getRecommendData("","getRecommendData")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HomeResBean>() {
@@ -41,5 +41,37 @@ public class HomeModel implements HomeContract.HomeModel{
                     }
                 });
 
+    }
+
+    @Override
+    public void getCityData(String city, final MyRetrofitCallback callback) {
+        RetrofitUtils.getInstance().getIRetrofitRx2Gson()
+                .getCityData(city,"getCityData")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<HomeResBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(HomeResBean value) {
+                        if(value.getCode() == 0){
+                            callback.onSuccess(value);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        KLog.i("aaa",e+"");
+                        callback.onFailed(e+"");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

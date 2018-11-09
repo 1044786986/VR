@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/appBackground">
+    <TextView
+        android:id="@+id/textView"
+        android:text="塞乐的呢撒离开你的撒看来你大理石可能的"
+        android:textSize="@dimen/sp_13"
+        android:textColor="@color/normalText"
+        android:padding="@dimen/dp_5"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150" />
+</LinearLayout>

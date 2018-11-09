@@ -8,6 +8,8 @@ import com.example.ljh.vr.R;
 import com.example.ljh.vr._base.BasePresenter;
 import com.example.ljh.vr._base.BaseView;
 import com.example.ljh.vr.home.HomeFragment;
+import com.example.ljh.vr.personal.PersonalFragment;
+import com.example.ljh.vr.share.ShareFragment;
 import com.example.ljh.vr.utils.ShowTipUtils;
 
 public class MainPresenter extends BasePresenter implements MainContract.MainPresenter{
@@ -16,11 +18,11 @@ public class MainPresenter extends BasePresenter implements MainContract.MainPre
 
     private LauncherFragment fragmentLauncher;
     private HomeFragment fragmentHome;
-    private Fragment fragmentFind;
+    private ShareFragment fragmentShare;
     private Fragment fragmentFoot;
     private Fragment fragmentPersonal;
 
-    public static String curUser;
+    public static String curUser = "";
     public static boolean isPermission = false;
 
     public final int FRAME_LAYOUT = R.id.frameLayout_main;
@@ -42,18 +44,6 @@ public class MainPresenter extends BasePresenter implements MainContract.MainPre
         showFragment(pos);
         mMainView.changeColor(pos);
         curPage = pos;
-//        switch (pos){
-//            case 0:
-//                showFragment(0);
-//                break;
-//            case 1:
-//                break;
-//            case 2:
-//                break;
-//            case 3:
-//                break;
-//        }
-
     }
 
     @Override
@@ -70,10 +60,20 @@ public class MainPresenter extends BasePresenter implements MainContract.MainPre
                 }
                 break;
             case 1:
+                if(fragmentShare == null){
+                    fragmentShare = new ShareFragment();
+                    ft.add(FRAME_LAYOUT,fragmentShare,"ShareFragment");
+                }
+                ft.show(fragmentShare);
                 break;
             case 2:
                 break;
             case 3:
+                if(fragmentPersonal == null){
+                    fragmentPersonal = new PersonalFragment();
+                    ft.add(FRAME_LAYOUT,fragmentPersonal,"PersonalFragment");
+                }
+                ft.show(fragmentPersonal);
                 break;
         }
     }
@@ -83,8 +83,8 @@ public class MainPresenter extends BasePresenter implements MainContract.MainPre
         if(fragmentHome != null){
             ft.hide(fragmentHome);
         }
-        if(fragmentFind != null){
-            ft.hide(fragmentFind);
+        if(fragmentShare != null){
+            ft.hide(fragmentShare);
         }
         if(fragmentFoot != null){
             ft.hide(fragmentFoot);
@@ -109,6 +109,7 @@ public class MainPresenter extends BasePresenter implements MainContract.MainPre
             FragmentTransaction ft = mMainView.getMyFragmentManager().beginTransaction();
             ft.remove(fragmentLauncher);
             ft.commit();
+            fragmentLauncher = null;
         }
         mMainView.showBottomNavigation();
     }
@@ -141,5 +142,11 @@ public class MainPresenter extends BasePresenter implements MainContract.MainPre
     @Override
     public void reLoadView() {
 
+    }
+
+    @Override
+    public void setHomeCity(String city) {
+        fragmentHome.setTvCity(city);
+        fragmentHome.getCityData(city);
     }
 }

@@ -15,14 +15,13 @@ import com.example.ljh.vr.R;
 import com.example.ljh.vr._base.BaseFragment;
 import com.example.ljh.vr._base.BasePresenter;
 import com.example.ljh.vr._base.BaseView;
-import com.example.ljh.vr.select_city.OnSelectCityActivity;
-import com.example.ljh.vr.select_city.SelectCityContract;
+import com.example.ljh.vr.select_city.SelectCityActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class HomeFragment extends BaseFragment implements HomeContract.HomeView,BaseView,
-        View.OnClickListener,SelectCityContract.OnSelectCityListener{
+        View.OnClickListener{
     @BindView(R.id.linearLayout_city)
     protected LinearLayout mLinearLayout_city;
     @BindView(R.id.svHome)
@@ -59,7 +58,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.HomeView,
     @Override
     public void initData() {
         showProgressBar();
-        mHomePresenter.getData();
+        mHomePresenter.getRecommendData();
     }
 
     @Override
@@ -67,7 +66,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.HomeView,
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.linearLayout_city:
-                Intent intent = new Intent(getMyContext(), OnSelectCityActivity.class);
+                Intent intent = new Intent(getMyContext(), SelectCityActivity.class);
                 startActivityForResult(intent,0);
                 break;
             case R.id.svHome:
@@ -117,7 +116,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.HomeView,
     }
 
     @Override
-    public void onSelect(String city) {
-        setTvCity(city);
+    public void getCityData(String city) {
+        mHomePresenter.getCityData(city);
     }
 }

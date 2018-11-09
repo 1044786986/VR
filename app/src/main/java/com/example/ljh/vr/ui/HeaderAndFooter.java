@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ljh.vr.utils.CompressUtils;
+
 public class HeaderAndFooter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final int HEADER_KEY = 10000;
     private static final int FOOTER_KEY = 20000;
@@ -120,6 +122,10 @@ public class HeaderAndFooter extends RecyclerView.Adapter<RecyclerView.ViewHolde
      */
     public int getRealItemCount(){
         return innerAdapter.getItemCount();
+    }
+
+    public void setChildAdapter(RecyclerView.Adapter adapter){
+        innerAdapter = adapter;
     }
 
     /**

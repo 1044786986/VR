@@ -8,6 +8,10 @@ import android.util.Log;
 import com.socks.library.KLog;
 
 public class MyApplication extends Application{
+    public static final int SHARE_HEADER_SIZE = 20;
+    public static final int NORMAL_NORMAL_PICTURE_SIZE = 200;
+    public static final int NORMAL_SMALL_PICTURE_SIZE = 50;
+
     private static Application application;
     public static int activityCount = 0;
     private ActivityLifecycleCallbacks activityLifecycleCallbacks = new ActivityLifecycleCallbacks() {

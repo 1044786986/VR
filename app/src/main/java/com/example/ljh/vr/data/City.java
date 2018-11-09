@@ -1,5 +1,8 @@
 package com.example.ljh.vr.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class City {
     public final static String citys[] = {"A","阿拉善市","鞍山市","澳门", "安庆市","阿克苏市","阿勒泰市",
             "安阳市","恩施市","阿坝市","安顺市","阿里市","安康市",
@@ -47,4 +50,10 @@ public class City {
             "驻马店市","株洲市","邵阳市","张家界市","珠海市","湛江市","肇庆市","中山市","自贡市",
             "资阳市", "遵义市", "张掖市"};
 
+    public static List<String> cityList = new ArrayList<>();
+    public static void addCity(){
+        for(int i=0;i<citys.length;i++){
+            cityList.add(citys[i]);
+        }
+    }
 }

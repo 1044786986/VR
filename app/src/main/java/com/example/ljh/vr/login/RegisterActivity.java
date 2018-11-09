@@ -13,6 +13,7 @@ import com.example.ljh.vr.R;
 import com.example.ljh.vr.ui.SlideBack;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterContract.RegisterView,View.OnClickListener{
@@ -20,11 +21,13 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     protected EditText etUsername;
     @BindView(R.id.etPassword)
     protected EditText etPassword;
-    @BindView(R.id.etEmail)
-    protected EditText etEmail;
+    @BindView(R.id.etMsg)
+    protected EditText etMsg;
+    @BindView(R.id.btMsg)
+    protected Button btMsg;
     @BindView(R.id.btRegister)
     protected Button btRegister;
-    @BindView(R.id.pbRegister)
+    @BindView(R.id.progressBar)
     protected ProgressBar progressBar;
 
     private RegisterPresenter registerPresenter;
@@ -36,19 +39,33 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
     @Override
-    @OnClick(R.id.btRegister)
+    @OnClick({R.id.btRegister,R.id.btMsg})
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btRegister:
                 registerPresenter.register();
                 break;
+            case R.id.btMsg:
+                registerPresenter.getMsgCode((etUsername.getText()+"").trim());
+                break;
         }
     }
 
     private void init(){
+        ButterKnife.bind(this);
         registerPresenter = new RegisterPresenter(this);
         SlideBack slideBack = new SlideBack(this);
         slideBack.attach();
+    }
+
+    @Override
+    public void setTimerText(String s) {
+        btMsg.setText(s+"秒可后重发");
+    }
+
+    @Override
+    public void timerFinish() {
+        btMsg.setText("获取验证码");
     }
 
     @Override
@@ -67,11 +84,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
     @Override
-    public void showToast(String string) {
-
-    }
-
-    @Override
     public void finishThis() {
         synchronized(this){
             finish();
@@ -81,16 +93,18 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     @Override
     public RegisterRequestBean getRegisterInfo() {
         RegisterRequestBean registerRequestBean = new RegisterRequestBean();
-        registerRequestBean.setUsername(etUsername.getText()+"");
-        registerRequestBean.setPassword(etPassword.getText()+"");
-        registerRequestBean.setEmail(etEmail.getText()+"");
+        registerRequestBean.setUsername((etUsername.getText()+"").trim());
+        registerRequestBean.setPassword((etPassword.getText()+"").trim());
+        registerRequestBean.setCode((etMsg.getText()+"").trim());
         return registerRequestBean;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        registerPresenter.recycle();
-        registerPresenter = null;
+        if(registerPresenter != null){
+            registerPresenter.recycle();
+            registerPresenter = null;
+        }
     }
 }

@@ -8,34 +8,32 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <ScrollView
+        android:id="@+id/scrollViewHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        <!--android:layout_below="@id/linearLayout_search"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
             android:id="@+id/ivHeader"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_200"
+            android:layout_height="@dimen/dp_150"
             android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/a" />
 
             <LinearLayout
                 android:id="@+id/linearLayout_float"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_100"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:layout_marginRight="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_150"
-                android:background="@drawable/bg_home_float"
+                android:layout_height="@dimen/dp_120"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_80"
+                android:background="@drawable/bg_home_float2"
                 android:orientation="horizontal">
                 <LinearLayout
                     android:orientation="vertical"
@@ -74,10 +72,17 @@
             </LinearLayout>
 
         </RelativeLayout>
+            <RelativeLayout
+                android:descendantFocusability="blocksDescendants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvHome"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="@dimen/dp_5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+        </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>
@@ -98,25 +103,29 @@
                 android:text="厦门"
                 android:textSize="@dimen/sp_15"
                 android:maxLines="1"
-                android:layout_width="@dimen/dp_30"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:layout_width="@dimen/dp_40"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:src="@drawable/arrow_down"
-                android:layout_marginLeft="@dimen/dp_5"
+
+                android:layout_gravity="center"
                 android:layout_width="@dimen/dp_20"
                 android:layout_height="@dimen/dp_20" />
         </LinearLayout>
 
-        <View
-            android:background="@color/rvLine"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_width="@dimen/dp_0_1"
-            android:layout_height="match_parent"/>
+        <!--<View-->
+            <!--android:background="@color/rvLine"-->
+            <!--android:layout_marginLeft="@dimen/dp_10"-->
+            <!--android:layout_marginRight="@dimen/dp_10"-->
+            <!--android:layout_width="@dimen/dp_0_1"-->
+            <!--android:layout_height="match_parent"/>-->
 
         <android.support.v7.widget.SearchView
             android:id="@+id/svHome"
             android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
             android:background="@drawable/bg_search_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

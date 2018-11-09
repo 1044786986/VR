@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#E5E5E5"
+    android:background="@color/select_city_letter"
     android:padding="@dimen/dp_5">
     <TextView
         android:id="@+id/textView"
         android:text="A"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

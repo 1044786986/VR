@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="appBackground">#F9F9F9</color>
+    <!--<color name="appBackground">#F9F9F9</color>-->
+    <color name="appBackground">#fff</color>
     <!--<color name="appTheme">#FDD84C</color>-->
     <color name="appTheme">#EFB336</color>
     <color name="oldAppTheme">#EFB336</color>
@@ -19,9 +20,13 @@
     <color name="statusBar">#EFB336</color>
     <!--<color name="statusBar">#DB450D</color>-->
     <color name="normalText">#909090</color>
+    <color name="blackText">#4C4C4C</color>
     <color name="normalEditText">#8a8a8a</color>
     <color name="selectEditText">#03a9f4</color>
     <color name="camera">#112222</color>
     <color name="home_top">#FF4F00</color>
     <color name="select_city_float">#90EFB336</color>
+    <color name="select_city_letter">#E5E5E5</color>
+    <color name="main_bottom_navigation">#F9F9F9</color>
+    <color name="bg_share">#E6E5E5</color>
 </resources>

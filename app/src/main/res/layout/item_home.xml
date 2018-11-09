@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/appBackground">
+    android:background="#fff"
+    android:id="@+id/item">
     <LinearLayout
         android:padding="@dimen/dp_10"
         android:layout_width="match_parent"
@@ -12,6 +13,7 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/imageView"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_launcher"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="@dimen/dp_100" />
@@ -80,15 +82,15 @@
                     <!--android:layout_height="wrap_content" />-->
                 <!--<TextView-->
                     <!--android:id="@+id/tvLabel3"-->
-                    <!--android:text=""-->
-                    <!--android:textSize="@dimen/sp_11"-->
-                    <!--android:textColor="#fff"-->
-                    <!--android:visibility="gone"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/dp_5"-->
                     <!--android:background="@drawable/bg_home_item_label"-->
                     <!--android:padding="@dimen/dp_2"-->
-                    <!--android:layout_marginLeft="@dimen/dp_5"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
+                    <!--android:text="AAA"-->
+                    <!--android:textColor="#fff"-->
+                    <!--android:textSize="@dimen/sp_11"-->
+                    <!--android:visibility="visible" />-->
             </LinearLayout>
             <TextView
                 android:id="@+id/tvAddress"

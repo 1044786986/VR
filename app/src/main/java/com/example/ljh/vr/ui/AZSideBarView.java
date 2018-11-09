@@ -46,10 +46,10 @@ public class AZSideBarView extends View {
 
     public AZSideBarView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_select_city, null);
+//        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+//        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+//        View view = LayoutInflater.from(context).inflate(R.layout.dialog_select_city, null);
 //        ShowTipUtils.showAlertDialog(context,"",0,null);
 //        mOnTouchLetterListener = new OnTouchLetterListener() {
 //            @Override
@@ -120,4 +120,8 @@ public class AZSideBarView extends View {
         return true;
     }
 
+    public void setCurPos(int pos){
+        mCurPos = pos;
+        invalidate();
+    }
 }

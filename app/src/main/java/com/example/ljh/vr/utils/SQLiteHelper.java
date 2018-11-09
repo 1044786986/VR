@@ -1,10 +1,14 @@
 package com.example.ljh.vr.utils;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.socks.library.KLog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLiteHelper extends SQLiteOpenHelper{
     public static final String SQLITE_NAME = "ljh";
@@ -23,6 +27,8 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE search_log(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "logistics_number VARCHAR)");
+        sqLiteDatabase.execSQL("CREATE TABLE recently(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "city VARCHAR)");
     }
 
     @Override
@@ -32,6 +38,23 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         }
     }
 
+    public List<String> getRecentlyCity(){
+        mSqliteDatabase = getReadableDatabase();
+        Cursor cursor = mSqliteDatabase.rawQuery("SELECT * FROM recently_city LIMIT 3",null);
+        List<String> list = new ArrayList<>();
+        while (cursor.moveToNext()){
+            list.add(cursor.getString(cursor.getColumnIndex("city")));
+        }
+        mSqliteDatabase.close();
+        return list;
+    }
+
+    public void addRecentlyCity(String city){
+        mSqliteDatabase = getReadableDatabase();
+        String sql = "INSERT INTO recently VALUES('','"+city+"')";
+        mSqliteDatabase.execSQL(sql,null);
+        mSqliteDatabase.close();
+    }
 
 //    public List<SearchLogBean> getSearchLog(){
 //        mSqliteDatabase = getReadableDatabase();

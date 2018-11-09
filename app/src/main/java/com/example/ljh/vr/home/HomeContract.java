@@ -10,14 +10,18 @@ public class HomeContract {
     interface HomeView extends BaseView{
         void setHeaderImage(Bitmap bitmap);
         void setTvCity(String city);
+        void getCityData(String city);
+        void showProgressBar();
     }
 
     interface HomePresenter{
         void initRv(RecyclerView recyclerView);
-        void getData();
+        void getRecommendData();
+        void getCityData(String city);
     }
 
     interface HomeModel{
-        void getData(String id,MyRetrofitCallback callback);
+        void getRecommendData(MyRetrofitCallback callback);
+        void getCityData(String city,MyRetrofitCallback callback);
     }
 }

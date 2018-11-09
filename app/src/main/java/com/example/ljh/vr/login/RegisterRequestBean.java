@@ -3,7 +3,7 @@ package com.example.ljh.vr.login;
 public class RegisterRequestBean {
     private String username;
     private String password;
-    private String email;
+    private String code;
 
     public String getUsername() {
         return username;
@@ -21,11 +21,11 @@ public class RegisterRequestBean {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCode() {
+        return code;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCode(String code) {
+        this.code = code;
     }
 }

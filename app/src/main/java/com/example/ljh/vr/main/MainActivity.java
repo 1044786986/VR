@@ -1,27 +1,30 @@
 package com.example.ljh.vr.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ljh.vr.R;
+import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr._base.BaseActivity;
 import com.example.ljh.vr._base.BasePresenter;
 import com.example.ljh.vr._base.EventBusBean;
+import com.example.ljh.vr.data.City;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainContract.MainView,View.OnClickListener ,
         LauncherFragment.LauncherFinish{
-    private MainPresenter mMainPresenter;
-
     @BindView(R.id.linearLayout_home)
     protected LinearLayout linearLayout_home;
     @BindView(R.id.linearLayout_find)
@@ -55,7 +58,14 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
     @BindView(R.id.tvPersonal)
     protected TextView tvPersonal;
 
+    private MainPresenter mMainPresenter;
+    private ViewpagerAdapterMain mViewPagetAdapter;
+
+    private static boolean isFirstStart = true;
+
+
     @Override
+    @OnClick({R.id.linearLayout_home,R.id.linearLayout_foot,R.id.linearLayout_find,R.id.linearLayout_personal})
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.linearLayout_home:
@@ -91,6 +101,10 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
 
     @Override
     public void initView() {
+        if(!isFirstStart){
+            return;
+        }
+        isFirstStart = false;
         mMainPresenter.selectPage(0);
         mMainPresenter.showLauncherFragment();
         applyNecessaryPermission(new PermissionResultCallback() {
@@ -123,7 +137,7 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
         return null;
     }
 
-    @Override
+//    @Override
     public void showProgressBar() {
 
     }
@@ -157,15 +171,15 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
                 tvHome.setTextColor(getResources().getColor(R.color.bottom_text_selected));
                 break;
             case 1:
-                ivFind.setImageResource(R.drawable.home_select);
+                ivFind.setImageResource(R.drawable.earth_select);
                 tvFind.setTextColor(getResources().getColor(R.color.bottom_text_selected));
                 break;
             case 2:
-                ivFoot.setImageResource(R.drawable.home_select);
+                ivFoot.setImageResource(R.drawable.foot_select);
                 tvFoot.setTextColor(getResources().getColor(R.color.bottom_text_selected));
                 break;
             case 3:
-                ivPersonal.setImageResource(R.drawable.home_select);
+                ivPersonal.setImageResource(R.drawable.app_select);
                 tvPersonal.setTextColor(getResources().getColor(R.color.bottom_text_selected));
                 break;
         }
@@ -197,5 +211,29 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
     @Override
     public void onLauncherFinish() {
         mMainPresenter.removeLauncherFragment();
+        showBottomNavigation();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (resultCode){
+            case KeyApp.RESULT_CODE_SELECT_CITY:
+                mMainPresenter.setHomeCity(data.getStringExtra(KeyApp.RESULT_KEY_SELECT_CITY));
+                break;
+        }
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        mMainPresenter.sureQuit(keyCode);
+        return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }
