@@ -65,23 +65,9 @@ public class SettingActivity extends BaseActivity implements SettingContract.Set
         return this;
     }
 
-//    @Override
-    public void showProgressBar() {
-
-    }
-
     @Override
     public void hideProgressBar() {
 
     }
 
-    @Override
-    public void showNullTip() {
-
-    }
-
-    @Override
-    public void hideNullTip() {
-
-    }
 }

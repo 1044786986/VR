@@ -12,9 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout_recently"
-        android:orientation="vertical"
+    <!--<LinearLayout-->
+        <!--android:id="@+id/linearLayout_recently"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"></LinearLayout>-->
+    <GridView
+        android:id="@+id/gdRecently"
+        android:numColumns="3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></LinearLayout>
+        android:layout_height="wrap_content"></GridView>
 </LinearLayout>

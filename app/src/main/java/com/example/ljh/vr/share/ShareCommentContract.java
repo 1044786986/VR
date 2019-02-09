@@ -19,6 +19,9 @@ public class ShareCommentContract {
         void hideCameraAndAlbum();
         void hideInputMethod(View view);
         void showProgressBar();
+        void hideProgressBar();
+        void showNullTip();
+        void hideNullTip();
         void clearEditTextComment();
         int getHeaderWidth();
         int getHeaderHeight();

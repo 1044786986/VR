@@ -51,7 +51,7 @@ public class ShareFragment extends BaseFragment implements ShareContract.ShareVi
 
     @Override
     public void initData() {
-        mSharePresenter.getData();
+//        mSharePresenter.getData();
     }
 
     @Override

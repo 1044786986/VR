@@ -9,16 +9,23 @@ import com.example.ljh.vr.select_city.HotCityBean;
 import com.example.ljh.vr.share.ShareCommentResBean;
 import com.example.ljh.vr.share.ShareResBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Retrofit服务
  */
 public interface IRetrofit {
+
+    @GET("hotCity/getHotCity")
+    Observable<List<String>> getHotCity();
+
     @FormUrlEncoded
     @POST("login.php")
     Observable<LoginBean.LoginResponse> login(@Field("username") String username,
@@ -42,8 +49,8 @@ public interface IRetrofit {
     @POST("home.php")
     Observable<HomeResBean> getCityData(@Field("city") String city,@Field("action") String action);
 
-    @GET("getHotCity.php")
-    Observable<HotCityBean> getHotCity();
+//    @GET("getHotCity.php")
+//    Observable<HotCityBean> getHotCity();
 
     @FormUrlEncoded
     @POST("info.php")

@@ -97,7 +97,7 @@ public class AlbumRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     @Override
                     public void onFailed(String error) {
-                        ((VHNormal)holder).imageView.setImageResource(R.drawable.load_img_failed_gray_300);
+                        ((VHNormal)holder).imageView.setImageResource(R.mipmap.load_img_failed_gray_300);
                     }
                 });
 
@@ -140,7 +140,7 @@ public class AlbumRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     @Override
                     public void onFailed(String error) {
-                        ((VHVr)holder).imageView.setImageResource(R.drawable.load_img_failed_gray_300);
+                        ((VHVr)holder).imageView.setImageResource(R.mipmap.load_img_failed_gray_300);
                     }
                 });
                 break;

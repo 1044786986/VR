@@ -101,16 +101,6 @@ public class InfoActivity extends BaseActivity implements InfoContract.InfoView,
     }
 
     @Override
-    public void showNullTip() {
-
-    }
-
-    @Override
-    public void hideNullTip() {
-
-    }
-
-    @Override
     public void myFinish() {
         finish();
     }

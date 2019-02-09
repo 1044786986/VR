@@ -1,5 +1,6 @@
 package com.example.ljh.vr.utils;
 
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +16,6 @@ public class ThreadPoolUtils {
     ThreadPoolUtils(){
         mThreadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE,MAX_POOL_SIZE,TIME_OUT,TIME_UNIT,
                 new LinkedBlockingQueue<Runnable>());
-
     }
 
     public static ThreadPoolUtils getInstance(){

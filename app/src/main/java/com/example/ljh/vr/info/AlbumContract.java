@@ -11,6 +11,9 @@ import com.example.ljh.vr._base.MyRetrofitCallback;
 public class AlbumContract {
     interface AlbumView extends BaseView {
         void showProgressBar();
+        void hideProgressBar();
+        void showNullTip();
+        void hideNullTip();
     }
 
     interface AlbumPresenter{

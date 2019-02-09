@@ -15,12 +15,14 @@ import com.example.ljh.vr.R;
 import com.example.ljh.vr._base.BaseFragment;
 import com.example.ljh.vr._base.BasePresenter;
 import com.example.ljh.vr._base.BaseView;
+import com.example.ljh.vr._base.INullTip;
+import com.example.ljh.vr._base.IProgressBar;
 import com.example.ljh.vr.select_city.SelectCityActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class HomeFragment extends BaseFragment implements HomeContract.HomeView,BaseView,
+public class HomeFragment extends BaseFragment implements HomeContract.HomeView,
         View.OnClickListener{
     @BindView(R.id.linearLayout_city)
     protected LinearLayout mLinearLayout_city;
@@ -57,8 +59,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.HomeView,
 
     @Override
     public void initData() {
-        showProgressBar();
-        mHomePresenter.getRecommendData();
+//        showProgressBar();
+//        mHomePresenter.getRecommendData();
     }
 
     @Override

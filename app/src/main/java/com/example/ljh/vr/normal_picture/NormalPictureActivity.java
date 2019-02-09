@@ -61,7 +61,7 @@ public class NormalPictureActivity extends BaseActivity implements NormalPicture
         return this;
     }
 
-//    @Override
+    @Override
     public void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -71,15 +71,6 @@ public class NormalPictureActivity extends BaseActivity implements NormalPicture
         progressBar.setVisibility(View.GONE);
     }
 
-    @Override
-    public void showNullTip() {
-
-    }
-
-    @Override
-    public void hideNullTip() {
-
-    }
 
     @Override
     public void myFinish() {

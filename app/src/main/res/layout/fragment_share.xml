@@ -12,7 +12,7 @@
         android:layout_height="@dimen/dp_40">
         <ImageView
             android:id="@+id/ivWrite"
-            android:src="@drawable/write_white_100"
+            android:src="@mipmap/write_white_100"
             android:layout_gravity="center"
             android:layout_marginRight="@dimen/dp_10"
             android:layout_width="@dimen/dp_25"
@@ -44,7 +44,7 @@
     <ImageView
         android:id="@+id/ivNothing"
         android:visibility="gone"
-        android:src="@drawable/nothing_data_tip"
+        android:src="@mipmap/nothing_data_tip"
         android:layout_centerInParent="true"
         android:layout_width="@dimen/dp_150"
         android:layout_height="@dimen/dp_150" />

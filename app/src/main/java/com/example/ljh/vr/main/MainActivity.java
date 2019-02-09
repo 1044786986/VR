@@ -14,6 +14,7 @@ import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr._base.BaseActivity;
 import com.example.ljh.vr._base.BasePresenter;
 import com.example.ljh.vr._base.EventBusBean;
+import com.example.ljh.vr._base.PermissionManagerActivity;
 import com.example.ljh.vr.data.City;
 
 import org.greenrobot.eventbus.EventBus;
@@ -23,7 +24,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements MainContract.MainView,View.OnClickListener ,
+public class MainActivity extends PermissionManagerActivity implements MainContract.MainView,View.OnClickListener ,
         LauncherFragment.LauncherFinish{
     @BindView(R.id.linearLayout_home)
     protected LinearLayout linearLayout_home;
@@ -59,7 +60,7 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
     protected TextView tvPersonal;
 
     private MainPresenter mMainPresenter;
-    private ViewpagerAdapterMain mViewPagetAdapter;
+    private ViewpagerAdapterMain mViewPagerAdapter;
 
     private static boolean isFirstStart = true;
 
@@ -91,7 +92,6 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBus(EventBusBean busBean){
-
     }
 
     @Override
@@ -137,23 +137,8 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
         return null;
     }
 
-//    @Override
-    public void showProgressBar() {
-
-    }
-
     @Override
     public void hideProgressBar() {
-
-    }
-
-    @Override
-    public void showNullTip() {
-
-    }
-
-    @Override
-    public void hideNullTip() {
 
     }
 
@@ -167,19 +152,19 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
         setAllNormal();
         switch (pos){
             case 0:
-                ivHome.setImageResource(R.drawable.home_select);
+                ivHome.setImageResource(R.mipmap.home_select);
                 tvHome.setTextColor(getResources().getColor(R.color.bottom_text_selected));
                 break;
             case 1:
-                ivFind.setImageResource(R.drawable.earth_select);
+                ivFind.setImageResource(R.mipmap.navigation_select);
                 tvFind.setTextColor(getResources().getColor(R.color.bottom_text_selected));
                 break;
             case 2:
-                ivFoot.setImageResource(R.drawable.foot_select);
+                ivFoot.setImageResource(R.mipmap.foot_select);
                 tvFoot.setTextColor(getResources().getColor(R.color.bottom_text_selected));
                 break;
             case 3:
-                ivPersonal.setImageResource(R.drawable.app_select);
+                ivPersonal.setImageResource(R.mipmap.app_select);
                 tvPersonal.setTextColor(getResources().getColor(R.color.bottom_text_selected));
                 break;
         }
@@ -187,10 +172,10 @@ public class MainActivity extends BaseActivity implements MainContract.MainView,
 
     @Override
     public void setAllNormal() {
-        ivHome.setImageResource(R.drawable.home_normal);
-        ivFind.setImageResource(R.drawable.earth_normal);
-        ivFoot.setImageResource(R.drawable.foot_normal);
-        ivPersonal.setImageResource(R.drawable.app_normal);
+        ivHome.setImageResource(R.mipmap.home_normal);
+        ivFind.setImageResource(R.mipmap.navigation_normal);
+        ivFoot.setImageResource(R.mipmap.foot_normal);
+        ivPersonal.setImageResource(R.mipmap.app_normal);
 
         tvHome.setTextColor(getResources().getColor(R.color.bottom_text_normal));
         tvFind.setTextColor(getResources().getColor(R.color.bottom_text_normal));

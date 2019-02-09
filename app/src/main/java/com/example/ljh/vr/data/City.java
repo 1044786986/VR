@@ -1,7 +1,13 @@
 package com.example.ljh.vr.data;
 
+import android.graphics.BitmapFactory;
+import android.view.LayoutInflater;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import retrofit2.CallAdapter;
 
 public class City {
     public final static String citys[] = {"A","阿拉善市","鞍山市","澳门", "安庆市","阿克苏市","阿勒泰市",

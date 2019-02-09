@@ -19,6 +19,7 @@ public interface InfoContract {
         int getViewPagerWidth();
         int getViewPagerHeight();
         LinearLayout getHeader();
+        void hideProgressBar();
     }
 
     interface InfoPresenter{

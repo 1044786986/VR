@@ -15,7 +15,7 @@ import com.socks.library.KLog;
 
 import java.util.regex.Pattern;
 
-public class SelectCityRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class SelectCityRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private final int TYPE_LETTER = 0;
     private final int TYPE_CHINESE = 1;
@@ -45,7 +45,6 @@ public class SelectCityRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             return new ViewHolderCity(view);
         }
         return null;
-
     }
 
     @Override
@@ -57,7 +56,7 @@ public class SelectCityRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     mListener.onScrollLetter(i);
                 }
             }
-        }else{
+        }else if(holder instanceof ViewHolderCity){
             ((ViewHolderCity)holder).textView.setText(City.citys[position]);
             ((ViewHolderCity)holder).textView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,7 +69,6 @@ public class SelectCityRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-//        return 50;
         return City.citys.length;
     }
 
@@ -109,10 +107,6 @@ public class SelectCityRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         }
                     }
                 }
-
-//                for(int i=0;i<mLetterPos.length;i++){
-//                    KLog.i("aaa","pos = "+mLetterPos[i]);
-//                }
             }
         });
 

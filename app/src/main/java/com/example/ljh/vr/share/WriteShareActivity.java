@@ -35,23 +35,8 @@ public class WriteShareActivity extends BaseActivity implements WriteShareContra
         return this;
     }
 
-//    @Override
-    public void showProgressBar() {
-
-    }
-
     @Override
     public void hideProgressBar() {
-
-    }
-
-    @Override
-    public void showNullTip() {
-
-    }
-
-    @Override
-    public void hideNullTip() {
 
     }
 

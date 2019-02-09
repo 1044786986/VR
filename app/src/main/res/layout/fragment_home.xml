@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_150"
             android:scaleType="fitXY"
-            android:src="@drawable/a" />
+            android:src="@mipmap/a" />
 
             <LinearLayout
                 android:id="@+id/linearLayout_float"
@@ -108,7 +108,7 @@
                 android:layout_width="@dimen/dp_40"
                 android:layout_height="wrap_content" />
             <ImageView
-                android:src="@drawable/arrow_down"
+                android:src="@mipmap/arrow_down"
 
                 android:layout_gravity="center"
                 android:layout_width="@dimen/dp_20"
@@ -142,7 +142,7 @@
     <ImageView
         android:id="@+id/ivNothing"
         android:visibility="gone"
-        android:src="@drawable/nothing_data_tip"
+        android:src="@mipmap/nothing_data_tip"
         android:layout_centerInParent="true"
         android:layout_width="@dimen/dp_150"
         android:layout_height="@dimen/dp_150" />

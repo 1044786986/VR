@@ -9,6 +9,8 @@ import com.example.ljh.vr._base.MyRetrofitCallback;
 public class VrPictureContract {
     interface VrPictureView extends BaseView {
         void showData(Bitmap bitmap);
+        void showProgressBar();
+        void hideProgressBar();
     }
 
     interface VrPicturePresenter{

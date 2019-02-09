@@ -11,7 +11,7 @@
 
         <ImageView
             android:id="@+id/ivBack"
-            android:src="@drawable/back_white"
+            android:src="@mipmap/back_white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_5"
             android:layout_width="@dimen/dp_30"
@@ -54,7 +54,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/smiling_face_gray_100" />
+                android:src="@mipmap/smiling_face_gray_100" />
 
             <EditText
                 android:id="@+id/etMessage"
@@ -76,7 +76,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@drawable/add_gray_100" />
+                android:src="@mipmap/add_gray_100" />
 
             <View
                 android:layout_width="@dimen/dp_0_1"
@@ -95,7 +95,7 @@
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginRight="@dimen/dp_10"
                 android:layout_marginBottom="@dimen/dp_8"
-                android:src="@drawable/send_pink_100"
+                android:src="@mipmap/send_pink_100"
                 android:visibility="visible" />
         </LinearLayout>
 
@@ -113,7 +113,7 @@
             <ImageView
                 android:id="@+id/ivAlbum"
                 android:visibility="visible"
-                android:src="@drawable/album_blue"
+                android:src="@mipmap/album_blue"
                 android:layout_margin="@dimen/dp_10"
                 android:layout_gravity="center"
                 android:layout_width="@dimen/dp_50"
@@ -125,7 +125,7 @@
                 android:layout_width="@dimen/dp_45"
                 android:layout_height="@dimen/dp_45"
                 android:layout_margin="@dimen/dp_10"
-                android:src="@drawable/camera_blue"/>
+                android:src="@mipmap/camera_blue"/>
 
             <!--<ImageView-->
                 <!--android:id="@+id/ivCommunity"-->

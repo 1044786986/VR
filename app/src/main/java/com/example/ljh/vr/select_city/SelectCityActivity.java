@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.ljh.vr.R;
@@ -19,6 +21,7 @@ import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -30,13 +33,22 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
     protected TextView mTvLetter;
     @BindView(R.id.rvSelectCity)
     protected RecyclerView mRvSelectCity;
-    @BindView(R.id.linearLayout_recently)
-    protected LinearLayout mLinearLayout_recently;
-    @BindView(R.id.linearLayout_hotCity)
-    protected LinearLayout mLinearLayout_hotCity;
+//    @BindView(R.id.linearLayout_recently)
+//    protected LinearLayout mLinearLayout_recently;
+//    @BindView(R.id.linearLayout_hotCity)
+//    protected LinearLayout mLinearLayout_hotCity;
+//    @BindView(R.id.gdHotCity)
+//    protected GridView mGdHotCity;
+//    @BindView(R.id.gdRecently)
+//    protected GridView mGdRecently;
     @BindView(R.id.ivBack)
     protected ImageView mIvBack;
 
+//    private List<Map<String,Object>> mHotCityList = new ArrayList<>();
+//    private List<Map<String,Object>> mRecentlyList = new ArrayList<>();
+//
+//    private SimpleAdapter mHotCityAdapter;
+//    private SimpleAdapter mRecentlyAdapter;
     private SelectCityPresenter mSelectCityPresenter;
 
     @Override
@@ -48,10 +60,20 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
     public void initView() {
 //        mRvSelectCity.setNestedScrollingEnabled(false);
         View recentlyView = LayoutInflater.from(this).inflate(R.layout.view_select_city_recently,null,false);
+        GridView gdRecently = recentlyView.findViewById(R.id.gdRecently);
 //        mLinearLayout_recently = recentlyView.findViewById(R.id.linearLayout_recently);
         View hotCityView = LayoutInflater.from(this).inflate(R.layout.view_select_city_hot,null,false);
+        GridView gdHotCity = hotCityView.findViewById(R.id.gdHotCity);
 //        mLinearLayout_hotCity = hotCityView.findViewById(R.id.linearLayout_hotCity);
         mSelectCityPresenter.initRvAdapter(mRvSelectCity,recentlyView,hotCityView);
+        mSelectCityPresenter.initGdAdapter(gdHotCity,gdRecently);
+//        /**
+//         * 初始化最近访问与热门城市
+//         */
+//        mHotCityAdapter = new SimpleAdapter(this,mHotCityList,R.layout.tv_city_name,new String[]{"text"},new int[]{R.id.tvCity});
+//        mGdHotCity.setAdapter(mHotCityAdapter);
+//        mRecentlyAdapter = new SimpleAdapter(this,mRecentlyList,R.layout.tv_city_name,new String[]{"text"},new int[]{R.id.tvCity});
+//        mGdRecently.setAdapter(mRecentlyAdapter);
 
         mAZSizeBarView.setOnTouchLetterListener(new AZSideBarView.OnTouchLetterListener() {
             @Override
@@ -95,25 +117,11 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
         return this;
     }
 
-//    @Override
-    public void showProgressBar() {
-
-    }
-
     @Override
     public void hideProgressBar() {
 
     }
 
-    @Override
-    public void showNullTip() {
-
-    }
-
-    @Override
-    public void hideNullTip() {
-
-    }
 
     @Override
     public void myFinish() {
@@ -140,11 +148,11 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
         for(int i=0;i<list.size();i++){
             tem_list.add(list.get(i));
             if(i == list.size()-1){
-                addView(tem_list,mLinearLayout_hotCity);
+//                addView(tem_list,mLinearLayout_hotCity);
                 return;
             }
             if(n == 3){
-                addView(tem_list,mLinearLayout_hotCity);
+//                addView(tem_list,mLinearLayout_hotCity);
                 tem_list.clear();
                 n = 0;
             }else{
@@ -160,7 +168,7 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
 
     @Override
     public void addRecentlyCityView(List<String> list) {
-        addView(list,mLinearLayout_recently);
+//        addView(list,mLinearLayout_recently);
     }
 
     @Override

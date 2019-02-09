@@ -12,7 +12,7 @@
 
     <ImageView
         android:id="@+id/header"
-        android:src="@drawable/back_gray"
+        android:src="@mipmap/back_gray"
         android:layout_marginTop="@dimen/dp_5"
         android:layout_marginLeft="@dimen/dp_5"
         android:layout_width="@dimen/dp_30"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/people_blue_64"
+                android:src="@mipmap/people_blue_64"
                 android:layout_gravity="center"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/key_blue_64"
+                android:src="@mipmap/key_blue_64"
                 android:layout_gravity="center"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />

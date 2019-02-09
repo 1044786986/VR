@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/ivBack"
-        android:src="@drawable/back_gray"
+        android:src="@mipmap/back_gray"
         android:layout_marginLeft="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_width="@dimen/dp_30"

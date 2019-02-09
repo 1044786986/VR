@@ -3,31 +3,70 @@ package com.example.ljh.vr.select_city;
 import java.util.List;
 
 public class HotCityBean {
-    private int code;
-    private String error;
-    private List<String> data;
+//    private int code;
+//    private String error;
+//    private List<String> data;
 
-    public int getCode() {
-        return code;
+//    public int getCode() {
+//        return code;
+//    }
+//
+//    public void setCode(int code) {
+//        this.code = code;
+//    }
+//
+//    public String getError() {
+//        return error;
+//    }
+//
+//    public void setError(String error) {
+//        this.error = error;
+//    }
+//
+//    public List<String> getData() {
+//        return data;
+//    }
+//
+//    public void setData(List<String> data) {
+//        this.data = data;
+//    }
+    private Integer id;
+
+    private String province;
+
+    private String city;
+
+    private Integer hot;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getError() {
-        return error;
+    public String getProvince() {
+        return province;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
     }
 
-    public List<String> getData() {
-        return data;
+    public String getCity() {
+        return city;
     }
 
-    public void setData(List<String> data) {
-        this.data = data;
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public Integer getHot() {
+        return hot;
+    }
+
+    public void setHot(Integer hot) {
+        this.hot = hot;
     }
 }

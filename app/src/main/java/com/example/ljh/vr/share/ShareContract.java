@@ -7,7 +7,9 @@ import com.example.ljh.vr._base.MyRetrofitCallback;
 
 public class ShareContract {
     interface ShareView extends BaseView {
-
+        void hideProgressBar();
+        void showNullTip();
+        void hideNullTip();
     }
 
     interface SharePresenter{

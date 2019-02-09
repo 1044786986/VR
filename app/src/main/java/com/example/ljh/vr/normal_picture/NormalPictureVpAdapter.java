@@ -80,7 +80,7 @@ public class NormalPictureVpAdapter extends PagerAdapter {
                     return;
                 }
                 mListener.onHide();
-                imageView.setImageResource(R.drawable.load_img_failed_gray_300);
+                imageView.setImageResource(R.mipmap.load_img_failed_gray_300);
 //                progressBar.setVisibility(View.GONE);
             }
         });

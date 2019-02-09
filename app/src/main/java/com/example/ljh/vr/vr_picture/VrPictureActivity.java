@@ -53,7 +53,7 @@ public class VrPictureActivity extends BaseActivity implements VrPictureContract
         return this;
     }
 
-//    @Override
+    @Override
     public void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
     }
@@ -61,16 +61,6 @@ public class VrPictureActivity extends BaseActivity implements VrPictureContract
     @Override
     public void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void showNullTip() {
-
-    }
-
-    @Override
-    public void hideNullTip() {
-
     }
 
     @Override

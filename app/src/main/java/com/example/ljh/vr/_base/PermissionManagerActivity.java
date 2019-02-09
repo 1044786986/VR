@@ -16,7 +16,7 @@ import com.socks.library.KLog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermissionManagerActivity extends StatusBarActivity{
+public abstract class PermissionManagerActivity extends BaseActivity{
     public static final int RESULT_CODE = 10000;
     public static final int CODE_WRITE_EXTERNAL_STORAGE = 0;
     public String permissions[] = {Manifest.permission.WRITE_EXTERNAL_STORAGE,

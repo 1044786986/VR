@@ -12,6 +12,9 @@ public class HomeContract {
         void setTvCity(String city);
         void getCityData(String city);
         void showProgressBar();
+        void hideProgressBar();
+        void showNullTip();
+        void hideNullTip();
     }
 
     interface HomePresenter{

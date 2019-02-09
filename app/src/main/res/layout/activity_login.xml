@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/back_gray" />
+        android:src="@mipmap/back_gray" />
 
     <ProgressBar
         android:id="@+id/pbLogin"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/people_blue_64"
+            android:src="@mipmap/people_blue_64"
             android:layout_gravity="center"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30" />
@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/key_blue_64"
+            android:src="@mipmap/key_blue_64"
             android:layout_gravity="center"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30" />
@@ -163,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/wechat_128"
+                android:src="@mipmap/wechat_128"
                 android:layout_width="@dimen/dp_50"
                 android:layout_height="@dimen/dp_50" />
             <TextView
@@ -204,7 +204,7 @@
             <ImageView
                 android:layout_width="51dp"
                 android:layout_height="@dimen/dp_50"
-                android:src="@drawable/short_msg_red_128" />
+                android:src="@mipmap/short_msg_red_128" />
             <TextView
                 android:text="短信动态密码"
                 android:textSize="@dimen/sp_12"

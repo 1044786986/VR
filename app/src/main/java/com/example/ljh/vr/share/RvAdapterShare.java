@@ -17,6 +17,7 @@ import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr.utils.CompressUtils;
 import com.example.ljh.vr.utils.GetUrlImageUtils;
 import com.example.ljh.vr.utils.TransformationUtils;
+import com.socks.library.KLog;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class RvAdapterShare extends RecyclerView.Adapter<RvAdapterShare.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        KLog.i("aaa","第"+position+"项");
         final ShareBean shareBean = mDataList.get(position);
         /**
          * 显示头像和相片

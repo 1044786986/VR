@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content" />
             <ImageView
                 android:id="@+id/ivHot"
-                android:src="@drawable/hot5"
+                android:src="@mipmap/hot5"
                 android:layout_marginTop="@dimen/dp_5"
                 android:layout_width="@dimen/dp_80"
                 android:layout_height="@dimen/dp_20" />

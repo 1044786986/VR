@@ -8,7 +8,8 @@ import com.example.ljh.vr._base.BaseView;
 public class NormalPictureContract {
 
     interface NormalPictureView extends BaseView {
-
+        void showProgressBar();
+        void hideProgressBar();
     }
 
     interface NormalPicturePresenter{

@@ -101,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40">
                 <ImageView
-                    android:src="@drawable/location_red"
+                    android:src="@mipmap/location_red"
                     android:layout_gravity="center"
                     android:layout_width="@dimen/dp_30"
                     android:layout_height="@dimen/dp_30" />
@@ -164,7 +164,7 @@
         android:layout_height="@dimen/dp_50">
         <ImageView
             android:id="@+id/ivBack"
-            android:src="@drawable/back_round_white"
+            android:src="@mipmap/back_round_white"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_width="@dimen/dp_35"

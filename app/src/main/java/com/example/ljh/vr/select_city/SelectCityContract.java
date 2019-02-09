@@ -2,6 +2,7 @@ package com.example.ljh.vr.select_city;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -10,7 +11,7 @@ import com.example.ljh.vr._base.MyRetrofitCallback;
 
 import java.util.List;
 
-public class SelectCityContract {
+public class SelectCityContract{
     interface SelectCityView extends BaseView{
         void addHotCityView(List<String> list);
         void addRecentlyCityView(List<String> list);
@@ -20,6 +21,7 @@ public class SelectCityContract {
 
     interface SelectCityPresenter{
         void initRvAdapter(RecyclerView recyclerView, View v1,View v2);
+        void initGdAdapter(GridView gdHotCity,GridView gdRecently);
         void moveToPos(int pos,RecyclerView recyclerView);
         void getHotCity();
         void getRecentlyCity();

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/ivHeader"
-            android:src="@drawable/head_100"
+            android:src="@mipmap/head_100"
             android:scaleType="fitXY"
             android:layout_width="@dimen/dp_40"
             android:layout_height="@dimen/dp_40" />

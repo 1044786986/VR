@@ -13,7 +13,7 @@
         android:layout_height="@dimen/dp_50">
         <ImageView
             android:id="@+id/ivSetting"
-            android:src="@drawable/setting_64"
+            android:src="@mipmap/setting_64"
             android:layout_gravity="right"
             android:layout_marginRight="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
@@ -30,7 +30,7 @@
 
         <ImageView
             android:id="@+id/ivHead"
-            android:src="@drawable/head_100"
+            android:src="@mipmap/head_100"
             android:layout_gravity="center"
 
             android:layout_width="@dimen/dp_70"
@@ -73,7 +73,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/collection_pink_300"
+            android:src="@mipmap/collection_pink_300"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30" />
         <TextView
@@ -97,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/home_select"
+                android:src="@mipmap/home_select"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
             <TextView
@@ -121,7 +121,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/fly_select"
+                android:src="@mipmap/fly_select"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
             <TextView
@@ -149,7 +149,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/device_blue_200"
+                android:src="@mipmap/device_blue_200"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
             <TextView
@@ -173,7 +173,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/mail_history_blue_64"
+                android:src="@mipmap/mail_history_blue_64"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
             <TextView
@@ -197,7 +197,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/myinfo_pink_300"
+                android:src="@mipmap/myinfo_pink_300"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
             <TextView
@@ -224,7 +224,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/message_orange_128"
+                android:src="@mipmap/message_orange_128"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
             <TextView
@@ -247,7 +247,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/money_bag_green_64"
+                android:src="@mipmap/money_bag_green_64"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
             <TextView
@@ -270,7 +270,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/company"
+                android:src="@mipmap/company"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30" />
             <TextView

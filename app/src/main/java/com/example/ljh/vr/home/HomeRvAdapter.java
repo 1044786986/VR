@@ -70,7 +70,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.ViewHolder
         }else if(hot > 5){
             hot = 5;
         }
-        int hotId = mContext.getResources().getIdentifier("hot" + hot,"drawable",mContext.getPackageName());
+        int hotId = mContext.getResources().getIdentifier("hot" + hot,"mipmap",mContext.getPackageName());
         holder.ivHot.setImageResource(hotId);
         /**
          * 添加标签
