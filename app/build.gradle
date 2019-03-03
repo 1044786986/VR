@@ -72,6 +72,8 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
     implementation 'com.belerweb:pinyin4j:2.5.0'
     implementation 'com.github.markzhai:galleryfinal:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    implementation 'com.github.florent37:glidepalette:2.1.2'
 
     implementation(name:'sdk-panowidget-1.170.0', ext:'aar')
     implementation(name:'sdk-audio-1.170.0', ext:'aar')

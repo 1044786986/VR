@@ -19,8 +19,9 @@ public class RetrofitUtils<T>{
     private static RetrofitUtils mRetrofitUtils;
     private Retrofit mRetrofit;
     private IRetrofit mIRetrofit;
+    public static final int CODE = 0;
 //    public static final String BASE_URL = "http://www.liangjiehao.top/vr/php/";
-    public static final String BASE_URL = "http://192.168.1.106:8080/find_street_scape/";
+    public static final String BASE_URL = "http://192.168.1.104:8080/find_street_scape/";
 //    public static final String BASE_URL = "192.168.155.1://8080/find_street_scape/";
     private static final int READ_TIME = 5;
     private static final int CONN_TIME = 5;

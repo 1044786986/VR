@@ -146,6 +146,7 @@ public class MainPresenter extends BasePresenter implements MainContract.MainPre
 
     @Override
     public void setHomeCity(String city) {
+        fragmentHome.setCurCity(city);
         fragmentHome.setTvCity(city);
         fragmentHome.getCityData(city);
     }

@@ -17,6 +17,8 @@ public class ShareBean implements Serializable {
     private String district;
     private String detail;
     private String date;
+    private String latitude;
+    private String longitude;
 
     class Urls implements Serializable{
         private String type;
@@ -150,5 +152,21 @@ public class ShareBean implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }

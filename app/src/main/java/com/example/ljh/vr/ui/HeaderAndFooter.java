@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ljh.vr.utils.CompressUtils;
+import com.socks.library.KLog;
 
 public class HeaderAndFooter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final int HEADER_KEY = 10000;
@@ -43,7 +44,7 @@ public class HeaderAndFooter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(isFooterPos(position)){
             return;
         }
-        innerAdapter.onBindViewHolder(holder,position - getHeaderCount());
+        innerAdapter.onBindViewHolder(holder,position-2);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class HeaderAndFooter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }else if(isFooterPos(position)){
             return footerMap.keyAt(position - getHeaderCount() - getRealItemCount());
         }
-        return innerAdapter.getItemViewType(position);
+        return innerAdapter.getItemViewType(position - getHeaderCount());
     }
 
     /**

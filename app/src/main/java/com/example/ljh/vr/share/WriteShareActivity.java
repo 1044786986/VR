@@ -35,10 +35,10 @@ public class WriteShareActivity extends BaseActivity implements WriteShareContra
         return this;
     }
 
-    @Override
-    public void hideProgressBar() {
-
-    }
+//    @Override
+//    public void hideProgressBar() {
+//
+//    }
 
     @Override
     public void myFinish() {

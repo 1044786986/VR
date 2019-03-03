@@ -4,19 +4,28 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 
 import com.example.ljh.vr.R;
+import com.example.ljh.vr._application.MyApplication;
 
 
 public class ScreenUtils {
     private Context context;
     private DisplayMetrics dm;
+    static ScreenUtils mScreenUtils;
 
-    public ScreenUtils(Context context){
-        this.context = context;
+    public ScreenUtils(){
+        this.context = MyApplication.getInstance();
         this.dm = context.getResources().getDisplayMetrics();
     }
 
-    public static ScreenUtils getInstance(Context context){
-        return new ScreenUtils(context);
+    public static ScreenUtils getInstance(){
+        if(mScreenUtils == null){
+            synchronized (ScreenUtils.class){
+                if(mScreenUtils == null){
+                    mScreenUtils = new ScreenUtils();
+                }
+            }
+        }
+        return mScreenUtils;
     }
 
     /**

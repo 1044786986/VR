@@ -1,6 +1,5 @@
 package com.example.ljh.vr.info;
 
-import com.example.ljh.vr._base.BaseResListBean;
 import com.example.ljh.vr._base.MyRetrofitCallback;
 import com.example.ljh.vr.utils.RetrofitUtils;
 import com.socks.library.KLog;
@@ -15,7 +14,7 @@ public class AlbumModel implements AlbumContract.AlbumModel {
     @Override
     public void getNormalData(String id, final MyRetrofitCallback callback) {
         RetrofitUtils.getInstance().getIRetrofitRx2Gson()
-                .getUrlData("getNormalData",id)
+                .getAlbumNormalImgUrls(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AlbumResUrlBean>() {
@@ -26,7 +25,7 @@ public class AlbumModel implements AlbumContract.AlbumModel {
 
                     @Override
                     public void onNext(AlbumResUrlBean value) {
-                        if(value.getCode() == 0) {
+                        if(value.getCode() == RetrofitUtils.CODE) {
                             callback.onSuccess(value.getData());
                             return;
                         }
@@ -49,7 +48,7 @@ public class AlbumModel implements AlbumContract.AlbumModel {
     @Override
     public void getVrData(String id, final MyRetrofitCallback callback) {
         RetrofitUtils.getInstance().getIRetrofitRx2Gson()
-                .getUrlData("getVrData",id)
+                .getAlbumVideoUrls(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AlbumResUrlBean>() {
@@ -60,7 +59,7 @@ public class AlbumModel implements AlbumContract.AlbumModel {
 
                     @Override
                     public void onNext(AlbumResUrlBean value) {
-                        if(value.getCode() == 0) {
+                        if(value.getCode() == RetrofitUtils.CODE) {
                             callback.onSuccess(value.getData());
                             return;
                         }

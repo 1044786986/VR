@@ -13,14 +13,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ljh.vr.R;
 import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr.info.AlbumUrlBean;
 import com.example.ljh.vr.normal_picture.NormalPictureActivity;
-import com.example.ljh.vr.utils.CompressUtils;
-import com.example.ljh.vr.utils.GetUrlImageUtils;
 import com.example.ljh.vr.utils.LruCacheUtils;
 import com.example.ljh.vr.utils.ScreenUtils;
+import com.example.ljh.vr.utils.glide.DefaultGlideOptionsFactory;
 import com.example.ljh.vr.vr_picture.VrPictureActivity;
 import com.socks.library.KLog;
 
@@ -63,17 +63,10 @@ public class RvAdapterShareComment extends RecyclerView.Adapter<RvAdapterShareCo
         /**
          * 显示头像
          */
-        GetUrlImageUtils.getUrlImage(bean.getHeaderUrl(), new GetUrlImageUtils.UrlImageCallback() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                holder.ivHeader.setImageBitmap(CompressUtils.getInstance(mContext).
-                        compress(bytes,holder.ivHeader.getWidth(),holder.ivHeader.getHeight(),20));
-            }
-
-            @Override
-            public void onFailed(String error) {}
-        });
-
+        Glide.with(mContext)
+                .load(bean.getHeaderUrl())
+                .apply(DefaultGlideOptionsFactory.getInstance().getGlideOptions().getOptions())
+                .into(holder.ivHeader);
         /**
          * 显示图片组
          */
@@ -95,35 +88,18 @@ public class RvAdapterShareComment extends RecyclerView.Adapter<RvAdapterShareCo
                     final ImageView imageView = LayoutInflater.from(mContext).
                             inflate(R.layout.iv_share_comment,null,false).findViewById(R.id.imageView);
                     KLog.i("aaa","imageView.width = " + imageView.getWidth() + "    " + imageView.getHeight());
-                    int width = ScreenUtils.getInstance(mContext).getScreenWidth();
+                    int width = ScreenUtils.getInstance().getScreenWidth();
                     int height = (int) (width * (2.0/3.0));
 //                KLog.i("aaa","height = " + height);
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,height);
                     imageView.setLayoutParams(layoutParams);
                     holder.linearLayout_image.addView(imageView);
 
-                    GetUrlImageUtils.getUrlImage(url, new GetUrlImageUtils.UrlImageCallback() {
-                        @Override
-                        public void onSuccess(byte[] bytes) {
-                            Bitmap bitmap1 = CompressUtils.getInstance(mContext).compress(bytes,imageView.getWidth(),imageView.getHeight(),60);
-                            imageView.setImageBitmap(bitmap1);
-                            LruCacheUtils.getInstance().put(url,bitmap1);
-                            setImageOnClick(imageView,bean,pos);
-                        }
-
-                        @Override
-                        public void onFailed(String error) {}
-                    });
-                }
-//                final ImageView imageView = LayoutInflater.from(mContext).
-//                        inflate(R.layout.iv_share_comment,null,false).findViewById(R.id.imageView);
-//                KLog.i("aaa","imageView.width = " + imageView.getWidth() + "    " + imageView.getHeight());
-//                int width = ScreenUtils.getInstance(mContext).getScreenWidth();
-//                int height = (int) (width * (2.0/3.0));
-////                KLog.i("aaa","height = " + height);
-//                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,height);
-//                imageView.setLayoutParams(layoutParams);
-//
+                    Glide.with(mContext)
+                            .load(url)
+                            .apply(DefaultGlideOptionsFactory.getInstance().getGlideOptions().getOptions())
+                            .into(imageView);
+                    setImageOnClick(imageView,bean,pos);
 //                    GetUrlImageUtils.getUrlImage(url, new GetUrlImageUtils.UrlImageCallback() {
 //                        @Override
 //                        public void onSuccess(byte[] bytes) {
@@ -136,6 +112,7 @@ public class RvAdapterShareComment extends RecyclerView.Adapter<RvAdapterShareCo
 //                        @Override
 //                        public void onFailed(String error) {}
 //                    });
+                }
                 }
         }
     }
@@ -167,7 +144,7 @@ public class RvAdapterShareComment extends RecyclerView.Adapter<RvAdapterShareCo
                     albumUrlBean.setSmallImg(bean.getImgUrls().get(pos).getSmallUrl());
                     albumUrlBean.setNormalImg(bean.getImgUrls().get(pos).getNormalUrl());
                     list.add(albumUrlBean);
-                    bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE, (Serializable) list);
+                    bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST, (Serializable) list);
                     intent.putExtras(bundle);
                     mContext.startActivity(intent);
                 }else if(type.equals("vr")){

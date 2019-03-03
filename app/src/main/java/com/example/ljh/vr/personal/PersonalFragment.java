@@ -115,10 +115,10 @@ public class PersonalFragment extends BaseFragment implements PersonalContract.P
         return getContext();
     }
 
-    @Override
-    public void hideProgressBar() {
-
-    }
+//    @Override
+//    public void hideProgressBar() {
+//
+//    }
 
     @Override
     public void myFinish() {

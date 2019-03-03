@@ -51,7 +51,6 @@ public class AlbumPresenter extends BasePresenter implements AlbumContract.Album
 
     @Override
     public void initRvAdapter(RecyclerView rvNormal, RecyclerView rvVr, RecyclerView rvVideo) {
-//        int color = mAlbumView.getMyContext().getResources()
         mRvMap = new SparseArray<>();
         mRvMap.put(RV_NORMAL,rvNormal);
         mRvMap.put(RV_VR,rvVr);
@@ -72,6 +71,10 @@ public class AlbumPresenter extends BasePresenter implements AlbumContract.Album
                 }
                 mAlbumView.hideProgressBar();
                 List<AlbumUrlBean> list = (List<AlbumUrlBean>) o;
+                if(list == null || list.size() == 0){
+                    mAlbumView.showNullTip();
+                    return;
+                }
                 for(int i=0;i<list.size();i++){
                     urlList.add(list.get(i));
                 }
@@ -103,6 +106,10 @@ public class AlbumPresenter extends BasePresenter implements AlbumContract.Album
                 }
                 mAlbumView.hideProgressBar();
                 List<AlbumUrlBean> list = (List<AlbumUrlBean>) o;
+                if(list == null || list.size() == 0){
+                    mAlbumView.showNullTip();
+                    return;
+                }
                 for(int i=0;i<list.size();i++){
                     urlList.add(list.get(i));
                 }
@@ -127,32 +134,8 @@ public class AlbumPresenter extends BasePresenter implements AlbumContract.Album
 
     @Override
     public void getIntent(Intent intent) {
-        mId = intent.getStringExtra(KeyApp.INTENT_KEY_ALBUM);
+        mId = intent.getIntExtra(KeyApp.INTENT_KEY_ALBUM,0)+"";
     }
-
-//    @Override
-//    public void recycleBitmapList(int type) {
-//        switch (type){
-//            case RV_NORMAL:
-//                if(mRvNormalList != null){
-//                    for(int i=0;i<mRvNormalList.size();i++){
-//                        mRvNormalList.get(i).recycle();
-//                    }
-//                    mRvNormalList.clear();
-//                }
-//                break;
-//            case RV_VR:
-//                if(mRvVrList != null){
-//                    for(int i=0;i<mRvVrList.size();i++){
-//                        mRvVrList.get(i).recycle();
-//                    }
-//                    mRvVrList.clear();
-//                }
-//                break;
-//            case RV_VIDEO:
-//                break;
-//        }
-//    }
 
     @Override
     protected void recycle() {

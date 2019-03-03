@@ -65,9 +65,9 @@ public class SettingActivity extends BaseActivity implements SettingContract.Set
         return this;
     }
 
-    @Override
-    public void hideProgressBar() {
-
-    }
+//    @Override
+//    public void hideProgressBar() {
+//
+//    }
 
 }

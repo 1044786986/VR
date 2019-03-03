@@ -10,12 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ljh.vr.R;
+import com.example.ljh.vr._application.EventBusApp;
 import com.example.ljh.vr._application.KeyApp;
-import com.example.ljh.vr._base.BaseActivity;
 import com.example.ljh.vr._base.BasePresenter;
 import com.example.ljh.vr._base.EventBusBean;
 import com.example.ljh.vr._base.PermissionManagerActivity;
-import com.example.ljh.vr.data.City;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -27,18 +26,20 @@ import butterknife.OnClick;
 public class MainActivity extends PermissionManagerActivity implements MainContract.MainView,View.OnClickListener ,
         LauncherFragment.LauncherFinish{
     @BindView(R.id.linearLayout_home)
-    protected LinearLayout linearLayout_home;
+    protected LinearLayout linearLayout_home;//底部导航栏 首页
     @BindView(R.id.linearLayout_find)
-    protected LinearLayout linearLayout_find;
+    protected LinearLayout linearLayout_find;//底部导航栏 发现
     @BindView(R.id.linearLayout_VR)
-    protected LinearLayout linearLayout_VR;
+    protected LinearLayout linearLayout_VR;   //底部导航栏 VR
     @BindView(R.id.linearLayout_foot)
-    protected LinearLayout linearLayout_foot;
+    protected LinearLayout linearLayout_foot;//底部导航栏 足迹
     @BindView(R.id.linearLayout_personal)
-    protected LinearLayout linearLayout_personal;
+    protected LinearLayout linearLayout_personal;//底部导航栏 个人
     @BindView(R.id.linearLayout_bottomNavigation)
-    protected LinearLayout bottomNavigation;
-
+    protected LinearLayout bottomNavigation;    //底部导航栏
+    /**
+     * 导航栏图标
+     */
     @BindView(R.id.ivHome)
     protected ImageView ivHome;
     @BindView(R.id.ivFind)
@@ -49,7 +50,9 @@ public class MainActivity extends PermissionManagerActivity implements MainContr
     protected ImageView ivFoot;
     @BindView(R.id.ivPersonal)
     protected ImageView ivPersonal;
-
+    /**
+     * 导航栏文字
+     */
     @BindView(R.id.tvHome)
     protected TextView tvHome;
     @BindView(R.id.tvFind)
@@ -60,9 +63,8 @@ public class MainActivity extends PermissionManagerActivity implements MainContr
     protected TextView tvPersonal;
 
     private MainPresenter mMainPresenter;
-    private ViewpagerAdapterMain mViewPagerAdapter;
 
-    private static boolean isFirstStart = true;
+    private static boolean isFirstStart = true;//判断是否首次启动APP
 
 
     @Override
@@ -92,6 +94,9 @@ public class MainActivity extends PermissionManagerActivity implements MainContr
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBus(EventBusBean busBean){
+        switch (busBean.getType()){
+
+        }
     }
 
     @Override
@@ -104,6 +109,7 @@ public class MainActivity extends PermissionManagerActivity implements MainContr
         if(!isFirstStart){
             return;
         }
+        hideStatusBar();
         isFirstStart = false;
         mMainPresenter.selectPage(0);
         mMainPresenter.showLauncherFragment();
@@ -134,12 +140,7 @@ public class MainActivity extends PermissionManagerActivity implements MainContr
 
     @Override
     public Context getMyContext() {
-        return null;
-    }
-
-    @Override
-    public void hideProgressBar() {
-
+        return this;
     }
 
     @Override
@@ -189,6 +190,18 @@ public class MainActivity extends PermissionManagerActivity implements MainContr
     }
 
     @Override
+    public void showStatusBar() {
+        View view = getWindow().getDecorView();
+        view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+    }
+
+    @Override
+    public void hideStatusBar() {
+        View view = getWindow().getDecorView();
+        view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    @Override
     public FragmentManager getMyFragmentManager() {
         return getSupportFragmentManager();
     }
@@ -196,6 +209,7 @@ public class MainActivity extends PermissionManagerActivity implements MainContr
     @Override
     public void onLauncherFinish() {
         mMainPresenter.removeLauncherFragment();
+        showStatusBar();
         showBottomNavigation();
     }
 
@@ -217,8 +231,46 @@ public class MainActivity extends PermissionManagerActivity implements MainContr
         return true;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        KLog.i("aaa","Main.onDestroy");
+//    }
+//
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        KLog.i("aaa","Main.onCreate");
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        KLog.i("aaa","Main.onPause");
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        KLog.i("aaa","Main.onStop");
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        KLog.i("aaa","Main.onResume");
+//    }
+//
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        KLog.i("aaa","Main.onRestart");
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        KLog.i("aaa","Main.onStart");
+//    }
+
 }

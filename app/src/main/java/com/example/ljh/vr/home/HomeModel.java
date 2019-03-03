@@ -13,7 +13,7 @@ public class HomeModel implements HomeContract.HomeModel{
     @Override
     public void getRecommendData(final MyRetrofitCallback callback) {
         RetrofitUtils.getInstance().getIRetrofitRx2Gson()
-                .getRecommendData("","getRecommendData")
+                .getRecommendData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HomeResBean>() {
@@ -24,9 +24,9 @@ public class HomeModel implements HomeContract.HomeModel{
 
                     @Override
                     public void onNext(HomeResBean value) {
-                        if(value.getCode() == 0){
+//                        if(value.getCode() == 0){
                             callback.onSuccess(value);
-                        }
+//                        }
                     }
 
                     @Override

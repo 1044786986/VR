@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.example.ljh.vr.R;
 import com.example.ljh.vr.data.City;
 import com.example.ljh.vr.utils.ThreadPoolUtils;
-import com.socks.library.KLog;
 
 import java.util.regex.Pattern;
 
@@ -61,7 +60,7 @@ public class SelectCityRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((ViewHolderCity)holder).textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mListener.onSelect(City.citys[position]);
+                    mListener.onSelectCity(City.citys[position]);
                 }
             });
         }

@@ -9,7 +9,7 @@ import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr._base.BasePresenter;
 import com.example.ljh.vr._base.BaseView;
 import com.example.ljh.vr.info.AlbumUrlBean;
-import com.example.ljh.vr.utils.TransformationUtils;
+import com.socks.library.KLog;
 
 import java.util.List;
 
@@ -18,11 +18,7 @@ public class NormalPicturePresenter extends BasePresenter implements NormalPictu
     private NormalPictureContract.NormalPictureModel mNormalPictureModel;
 
     private List<AlbumUrlBean> mUrlList;
-    private List<byte[]> mBytesList;
-
     private int mCurPos;
-    private Bitmap mSmallBitmap;
-
     private NormalPictureVpAdapter mVpAdapter;
 
 
@@ -35,16 +31,17 @@ public class NormalPicturePresenter extends BasePresenter implements NormalPictu
     @Override
     public void getIntent(Intent intent) {
          Bundle bundle = intent.getExtras();
-        mUrlList = (List<AlbumUrlBean>) bundle.getSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE);
-//        mSmallBitmap = TransformationUtils.getInstance().bytes2bitmap(intent.getExtras().getByteArray(KeyApp.INTENT_KEY_NORMAL_PICTURE));
+        mUrlList = (List<AlbumUrlBean>) bundle.getSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST);
+//        mSmallBitmap = TransformationUtils.getInstance().bytes2bitmap(intent.getExtras().getByteArray(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST));
 //        mBytesList = (List<byte[]>) bundle.getSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE2);
-        mCurPos = bundle.getInt(KeyApp.INTENT_KEY_NORMAL_PICTURE3);
+        mCurPos = bundle.getInt(KeyApp.INTENT_KEY_NORMAL_PICTURE_CUR_POS);
     }
 
     @Override
     public void initVpAdapter(ViewPager viewPager) {
-        mVpAdapter = new NormalPictureVpAdapter(mNormalPictureView.getMyContext(),mUrlList,mBytesList,mCurPos);
+        mVpAdapter = new NormalPictureVpAdapter(mNormalPictureView.getMyContext(),viewPager,mUrlList,mCurPos);
         viewPager.setAdapter(mVpAdapter);
+        viewPager.setCurrentItem(mCurPos);
     }
 
     @Override

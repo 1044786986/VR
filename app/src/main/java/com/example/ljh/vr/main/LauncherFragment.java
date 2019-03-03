@@ -9,10 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.ljh.vr.R;
 import com.example.ljh.vr.utils.ThreadPoolUtils;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -35,6 +33,7 @@ public class LauncherFragment extends Fragment{
         startTimer();
         return view;
     }
+
 
     private void startTimer(){
         ThreadPoolUtils.getInstance().execute(new Runnable() {

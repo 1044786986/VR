@@ -5,7 +5,7 @@ import android.content.Context;
 public interface BaseView {
     Context getMyContext();
 //    void showProgressBar();
-    void hideProgressBar();
+//    void hideProgressBar();
 //    void showNullTip();
 //    void hideNullTip();
     void myFinish();

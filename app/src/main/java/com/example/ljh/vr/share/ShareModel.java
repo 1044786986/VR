@@ -14,7 +14,7 @@ public class ShareModel implements ShareContract.ShareModel {
     @Override
     public void getData(final MyRetrofitCallback callback) {
         RetrofitUtils.getInstance().getIRetrofitRx2Gson()
-                .getShareData("getData")
+                .getShareData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ShareResBean>() {
@@ -27,9 +27,10 @@ public class ShareModel implements ShareContract.ShareModel {
                     public void onNext(ShareResBean value) {
                         if(value.getCode() == 0){
                             callback.onSuccess(value.getData());
-                            return;
+
+                        }else{
+                            callback.onFailed(value.getError());
                         }
-                        callback.onFailed(value.getError());
                     }
 
                     @Override
@@ -46,8 +47,38 @@ public class ShareModel implements ShareContract.ShareModel {
     }
 
     @Override
-    public void loadData(String id,MyRetrofitCallback callback) {
+    public void loadData(String id,final MyRetrofitCallback callback) {
+        RetrofitUtils.getInstance().getIRetrofitRx2Gson()
+                .loadShareData(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ShareResBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(ShareResBean value) {
+                        if(value.getCode() == 0){
+                            callback.onSuccess(value.getData());
+
+                        }else{
+                            callback.onFailed(value.getError());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onFailed(e+"");
+                        KLog.i("aaa",e+"");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 }

@@ -115,11 +115,11 @@ public class InfoActivity extends BaseActivity implements InfoContract.InfoView,
          * 判断热度
          */
         int hot = infoBean.getHot();
-        if(hot < 0){
-            hot = 0;
-        }else if(hot > 5){
-            hot = 5;
-        }
+//        if(hot < 0){
+//            hot = 0;
+//        }else if(hot > 5){
+//            hot = 5;
+//        }
         int hotId = getResources().getIdentifier("hot" + hot,"drawable",getPackageName());
         mIvHot.setImageResource(hotId);
     }

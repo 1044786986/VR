@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -30,8 +31,8 @@ public class AlbumActivity extends BaseActivity implements AlbumContract.AlbumVi
     protected ViewPager mVpAlbum;
     @BindView(R.id.progressBar)
     protected ProgressBar mProgressBar;
-    @BindView(R.id.ivNothing)
-    protected ImageView mIvNothing;
+//    @BindView(R.id.ivNothing)
+//    protected ViewStub mIvNothing;
     @BindView(R.id.ivBack)
     protected ImageView ivBack;
 
@@ -53,12 +54,12 @@ public class AlbumActivity extends BaseActivity implements AlbumContract.AlbumVi
 
     @Override
     public void showNullTip() {
-        mIvNothing.setVisibility(View.VISIBLE);
+//        mIvNothing.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideNullTip() {
-        mIvNothing.setVisibility(View.GONE);
+//        mIvNothing.setVisibility(View.GONE);
     }
 
     @Override
@@ -73,9 +74,6 @@ public class AlbumActivity extends BaseActivity implements AlbumContract.AlbumVi
 
     @Override
     public void initView() {
-//        SlideBack slideBack = new SlideBack(this);
-//        slideBack.attach();
-
         mRvNormal = new RecyclerView(this);
         mRvVr = new RecyclerView(this);
         mRvVideo = new RecyclerView(this);

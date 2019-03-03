@@ -5,13 +5,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.ljh.vr.R;
 import com.example.ljh.vr._application.KeyApp;
@@ -23,21 +21,18 @@ import com.example.ljh.vr.info.AlbumUrlBean;
 import com.example.ljh.vr.main.MainPresenter;
 import com.example.ljh.vr.normal_picture.NormalPictureActivity;
 import com.example.ljh.vr.ui.HeaderAndFooter;
-import com.example.ljh.vr.ui.LoadMoreWrapper;
 import com.example.ljh.vr.utils.CompressUtils;
 import com.example.ljh.vr.utils.DateTimeUtils;
 import com.example.ljh.vr.utils.GetUrlImageUtils;
 import com.example.ljh.vr.utils.ImageLoade;
 import com.example.ljh.vr.utils.ShowTipUtils;
 import com.example.ljh.vr.vr_picture.VrPictureActivity;
-import com.socks.library.KLog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import butterknife.BindView;
 import cn.finalteam.galleryfinal.CoreConfig;
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
@@ -129,7 +124,7 @@ public class ShareCommentPresenter extends BasePresenter implements ShareComment
                                 albumUrlBean.setSmallImg(mShareBean.getImgUrls().get(pos).getSmallUrl());
                                 albumUrlBean.setNormalImg(mShareBean.getImgUrls().get(pos).getNormalUrl());
                                 list.add(albumUrlBean);
-                                bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE, (Serializable) list);
+                                bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST, (Serializable) list);
                                 intent.putExtras(bundle);
                                 mShareCommentView.getMyContext().startActivity(intent);
                             } else if (type.equals("vr")) {

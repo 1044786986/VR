@@ -32,7 +32,7 @@ public interface InfoContract {
     }
 
     interface InfoModel{
-        void getData(String id, MyRetrofitCallback callback);
+        void getData(int id, MyRetrofitCallback callback);
     }
 
 }

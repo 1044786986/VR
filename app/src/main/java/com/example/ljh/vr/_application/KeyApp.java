@@ -55,9 +55,9 @@ public class KeyApp {
      */
     public static final String INTENT_KEY_INFO = "id";
     public static final String INTENT_KEY_ALBUM = "id";
-    public static final String INTENT_KEY_NORMAL_PICTURE = "urlList";
+    public static final String INTENT_KEY_NORMAL_PICTURE_URL_LIST = "urlList";
     public static final String INTENT_KEY_NORMAL_PICTURE2 = "bytesList";
-    public static final String INTENT_KEY_NORMAL_PICTURE3 = "curPos";
+    public static final String INTENT_KEY_NORMAL_PICTURE_CUR_POS = "curPos";
     public static final String INTENT_KEY_VR_PICTURE = "url";
     public static final String INTENT_KEY_SHARE_CONTENT = "shareTop";
 }

@@ -1,8 +1,18 @@
 package com.example.ljh.vr._base;
 
+
 public class EventBusBean<T>{
     private String type;
     private T t;
+
+    public EventBusBean(){
+
+    }
+
+    public EventBusBean(String type,T t){
+        this.t = t;
+        this.type = type;
+    }
 
     public String getType() {
         return type;

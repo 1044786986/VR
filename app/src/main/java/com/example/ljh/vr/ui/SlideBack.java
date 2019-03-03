@@ -56,8 +56,8 @@ public class SlideBack extends FrameLayout{
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.GRAY);
 
-        mScreenWidth = ScreenUtils.getInstance(context).getScreenWidth();
-        mScreenHeight = ScreenUtils.getInstance(context).getScreenHeight();
+        mScreenWidth = ScreenUtils.getInstance().getScreenWidth();
+        mScreenHeight = ScreenUtils.getInstance().getScreenHeight();
         mCloseWidth = mScreenWidth / 2;
     }
 

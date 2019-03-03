@@ -11,19 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.ljh.vr.R;
 import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr.normal_picture.NormalPictureActivity;
-import com.example.ljh.vr.utils.CompressUtils;
-import com.example.ljh.vr.utils.GetUrlImageUtils;
-import com.example.ljh.vr.utils.TransformationUtils;
+import com.example.ljh.vr.utils.glide.DefaultGlideOptionsFactory;
 import com.example.ljh.vr.vr_picture.VrPictureActivity;
-import com.socks.library.KLog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class AlbumRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
@@ -60,46 +57,51 @@ public class AlbumRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
-//        Bitmap bitmap;
         switch (mType) {
             case AlbumPresenter.RV_NORMAL:
-                if(position < mBitmapList.size() && mBitmapList.get(position) != null){
-                    ((VHNormal)holder).imageView.setImageBitmap(mBitmapList.get(position));
-                    return;
-                }
-                GetUrlImageUtils.getUrlImage(mUrlList.get(position).getSmallImg(), new GetUrlImageUtils.UrlImageCallback() {
-                    @Override
-                    public void onSuccess(final byte[] bytes) {
-                        final Bitmap bitmap = CompressUtils.getInstance(mContext).compress
-                                (bytes,((VHNormal)holder).imageView.getWidth(),((VHNormal)holder).imageView.getHeight(),mMaxSize);
-                        mBitmapList.add(bitmap);
-                        ((VHNormal)holder).imageView.setImageBitmap(bitmap);
-                        ((VHNormal)holder).imageView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                AlbumResUrlBean bean = new AlbumResUrlBean();
-                                bean.setData(mUrlList);
-                                Intent intent = new Intent(mContext,NormalPictureActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE,(Serializable) mUrlList);
-//                                bundle.putByteArray(KeyApp.INTENT_KEY_NORMAL_PICTURE,TransformationUtils.getInstance().bitmap2bytes(bitmap));
-                                List<byte[]> list = new ArrayList<>();
-                                for(int i=0;i<mBitmapList.size();i++){
-//                                    list.add(TransformationUtils.getInstance().bitmap2bytes(mBitmapList.get(i)));
-                                }
-//                                bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE2,(Serializable) list);
-                                bundle.putInt(KeyApp.INTENT_KEY_NORMAL_PICTURE3,position);
-                                intent.putExtras(bundle);
-                                mContext.startActivity(intent);
-                            }
-                        });
-                    }
+                Glide.with(mContext)
+                        .load(mUrlList.get(position).getSmallImg())
+                        .apply(DefaultGlideOptionsFactory.getInstance().getGlideOptions().getOptions())
+                        .into(((VHNormal)holder).imageView);
+                setNormalPictureListener(((VHNormal) holder).imageView,position);
 
-                    @Override
-                    public void onFailed(String error) {
-                        ((VHNormal)holder).imageView.setImageResource(R.mipmap.load_img_failed_gray_300);
-                    }
-                });
+//                if(position < mBitmapList.size() && mBitmapList.get(position) != null){
+//                    ((VHNormal)holder).imageView.setImageBitmap(mBitmapList.get(position));
+//                    return;
+//                }
+//                GetUrlImageUtils.getUrlImage(mUrlList.get(position).getSmallImg(), new GetUrlImageUtils.UrlImageCallback() {
+//                    @Override
+//                    public void onSuccess(final byte[] bytes) {
+//                        final Bitmap bitmap = CompressUtils.getInstance(mContext).compress
+//                                (bytes,((VHNormal)holder).imageView.getWidth(),((VHNormal)holder).imageView.getHeight(),mMaxSize);
+//                        mBitmapList.add(bitmap);
+//                        ((VHNormal)holder).imageView.setImageBitmap(bitmap);
+//                        ((VHNormal)holder).imageView.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                AlbumResUrlBean bean = new AlbumResUrlBean();
+//                                bean.setData(mUrlList);
+//                                Intent intent = new Intent(mContext,NormalPictureActivity.class);
+//                                Bundle bundle = new Bundle();
+//                                bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST,(Serializable) mUrlList);
+////                                bundle.putByteArray(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST,TransformationUtils.getInstance().bitmap2bytes(bitmap));
+//                                List<byte[]> list = new ArrayList<>();
+//                                for(int i=0;i<mBitmapList.size();i++){
+////                                    list.add(TransformationUtils.getInstance().bitmap2bytes(mBitmapList.get(i)));
+//                                }
+////                                bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE2,(Serializable) list);
+//                                bundle.putInt(KeyApp.INTENT_KEY_NORMAL_PICTURE_CUR_POS,position);
+//                                intent.putExtras(bundle);
+//                                mContext.startActivity(intent);
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onFailed(String error) {
+//                        ((VHNormal)holder).imageView.setImageResource(R.mipmap.load_img_failed_gray_300);
+//                    }
+//                });
 
 //                ((VHNormal)holder).imageView.setOnClickListener(new View.OnClickListener() {
 //                    @Override
@@ -108,41 +110,46 @@ public class AlbumRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //                        bean.setData(mUrlList);
 //                        Intent intent = new Intent(mContext,NormalPictureActivity.class);
 //                        Bundle bundle = new Bundle();
-//                        bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE,bean);
-//                        bundle.putByteArray(KeyApp.INTENT_KEY_NORMAL_PICTURE,TransformationUtils.getInstance().bitmap2bytes(bitmap));
+//                        bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST,bean);
+//                        bundle.putByteArray(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST,TransformationUtils.getInstance().bitmap2bytes(bitmap));
 //                        intent.putExtras(bundle);
 //                        mContext.startActivity(intent);
 //                    }
 //                });
                 break;
             case AlbumPresenter.RV_VR:
-                if(position < mBitmapList.size() && mBitmapList.get(position) != null){
-                    ((VHVr)holder).imageView.setImageBitmap(mBitmapList.get(position));
-                    return;
-                }
-                GetUrlImageUtils.getUrlImage(mUrlList.get(position).getSmallImg(), new GetUrlImageUtils.UrlImageCallback() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Bitmap bitmap = CompressUtils.getInstance(mContext).compress
-                                (bytes,((VHVr)holder).imageView.getWidth(),((VHVr)holder).imageView.getHeight(),mMaxSize);
-                        mBitmapList.add(bitmap);
-                        ((VHVr)holder).imageView.setImageBitmap(bitmap);
-
-                        ((VHVr)holder).imageView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(mContext,VrPictureActivity.class);
-                                intent.putExtra(KeyApp.INTENT_KEY_VR_PICTURE,mUrlList.get(position).getNormalImg());
-                                mContext.startActivity(intent);
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailed(String error) {
-                        ((VHVr)holder).imageView.setImageResource(R.mipmap.load_img_failed_gray_300);
-                    }
-                });
+//                if(position < mBitmapList.size() && mBitmapList.get(position) != null){
+//                    ((VHVr)holder).imageView.setImageBitmap(mBitmapList.get(position));
+//                    return;
+//                }
+                Glide.with(mContext)
+                        .load(mUrlList.get(position).getSmallImg())
+                        .apply(DefaultGlideOptionsFactory.getInstance().getGlideOptions().getOptions())
+                        .into(((VHVr)holder).imageView);
+                setVrPictureListener(((VHVr)holder).imageView,position);
+//                GetUrlImageUtils.getUrlImage(mUrlList.get(position).getSmallImg(), new GetUrlImageUtils.UrlImageCallback() {
+//                    @Override
+//                    public void onSuccess(byte[] bytes) {
+//                        Bitmap bitmap = CompressUtils.getInstance(mContext).compress
+//                                (bytes,((VHVr)holder).imageView.getWidth(),((VHVr)holder).imageView.getHeight(),mMaxSize);
+//                        mBitmapList.add(bitmap);
+//                        ((VHVr)holder).imageView.setImageBitmap(bitmap);
+//
+//                        ((VHVr)holder).imageView.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                Intent intent = new Intent(mContext,VrPictureActivity.class);
+//                                intent.putExtra(KeyApp.INTENT_KEY_VR_PICTURE,mUrlList.get(position).getNormalImg());
+//                                mContext.startActivity(intent);
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onFailed(String error) {
+//                        ((VHVr)holder).imageView.setImageResource(R.mipmap.load_img_failed_gray_300);
+//                    }
+//                });
                 break;
             case AlbumPresenter.RV_VIDEO:
                 break;
@@ -157,6 +164,38 @@ public class AlbumRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public int getItemViewType(int position) {
         return super.getItemViewType(position);
+    }
+
+    /**
+     * 设置普通图片点击监听
+     * @param view
+     * @param position
+     */
+    private void setNormalPictureListener(View view,final int position){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                AlbumResUrlBean bean = new AlbumResUrlBean();
+//                bean.setData(mUrlList);
+                Intent intent = new Intent(mContext,NormalPictureActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KeyApp.INTENT_KEY_NORMAL_PICTURE_URL_LIST,(Serializable) mUrlList);
+                bundle.putInt(KeyApp.INTENT_KEY_NORMAL_PICTURE_CUR_POS,position);
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
+            }
+        });
+    }
+
+    private void setVrPictureListener(View view,final int position){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext,VrPictureActivity.class);
+                intent.putExtra(KeyApp.INTENT_KEY_VR_PICTURE,mUrlList.get(position).getNormalImg());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     public void recycle(){

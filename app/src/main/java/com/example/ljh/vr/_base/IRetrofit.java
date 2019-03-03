@@ -3,6 +3,7 @@ package com.example.ljh.vr._base;
 import com.example.ljh.vr.home.HomeResBean;
 import com.example.ljh.vr.info.AlbumResUrlBean;
 import com.example.ljh.vr.info.InfoBean;
+import com.example.ljh.vr.info.InfoResBean;
 import com.example.ljh.vr.login.LoginBean;
 import com.example.ljh.vr.login.RegisterResponseBean;
 import com.example.ljh.vr.select_city.HotCityBean;
@@ -41,32 +42,37 @@ public interface IRetrofit {
     @POST("msgPassword.php")
     Observable<BaseBean> sendMsg(@Field("username") String username);
 
-    @FormUrlEncoded
-    @POST("home.php")
-    Observable<HomeResBean> getRecommendData(@Field("id") String id,@Field("action") String action);
+
+    @GET("home/getRecommendHomeData")
+    Observable<HomeResBean> getRecommendData();
 
     @FormUrlEncoded
     @POST("home.php")
     Observable<HomeResBean> getCityData(@Field("city") String city,@Field("action") String action);
 
-//    @GET("getHotCity.php")
-//    Observable<HotCityBean> getHotCity();
+    @FormUrlEncoded
+    @POST("home/getHomeDataInfo")
+    Observable<InfoResBean> getInfo(@Field("id") int id);
 
     @FormUrlEncoded
-    @POST("info.php")
-    Observable<InfoBean> getInfo(@Field("id") String id);
+    @POST("home/getAlbumNormalImgUrls")
+    Observable<AlbumResUrlBean>getAlbumNormalImgUrls(@Field("id") String id);
 
     @FormUrlEncoded
-    @POST("info_img_url.php")
-    Observable<AlbumResUrlBean>getUrlData(@Field("action") String action, @Field("id") String id);
+    @POST("home/getAlbumVrImgUrls")
+    Observable<AlbumResUrlBean>getAlbumVrImgUrls(@Field("id") String id);
 
     @FormUrlEncoded
-    @POST("share.php")
-    Observable<ShareResBean>getShareData(@Field("action") String action);
+    @POST("home/getAlbumVideoUrls")
+    Observable<AlbumResUrlBean>getAlbumVideoUrls(@Field("id") String id);
+
+//    @FormUrlEncoded
+    @GET("share/getShareData")
+    Observable<ShareResBean>getShareData();
 
     @FormUrlEncoded
-    @POST("share.php")
-    Observable<ShareResBean>upLoadShare(@Field("action") String action);
+    @POST("share/loadShareData")
+    Observable<ShareResBean>loadShareData(@Field("shareId") String shareId);
 
     @FormUrlEncoded
     @POST("share.php")

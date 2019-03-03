@@ -17,9 +17,11 @@
         <!--android:orientation="vertical"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"></LinearLayout>-->
-    <GridView
+    <com.example.ljh.vr.ui.RecyclerView_GridView
         android:id="@+id/gdHotCity"
         android:numColumns="3"
+        android:verticalSpacing="@dimen/dp_10"
+        android:horizontalSpacing="@dimen/dp_10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></GridView>
+        android:layout_height="wrap_content"></com.example.ljh.vr.ui.RecyclerView_GridView>
 </LinearLayout>

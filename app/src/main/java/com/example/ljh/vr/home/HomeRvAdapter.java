@@ -2,12 +2,7 @@ package com.example.ljh.vr.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +11,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ljh.vr.R;
 import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr.info.InfoActivity;
-import com.example.ljh.vr.utils.GetUrlImageUtils;
-import com.socks.library.KLog;
+import com.example.ljh.vr.utils.GlideOptionsUtils;
 
 import java.util.List;
 
@@ -42,22 +37,11 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-//        KLog.i("aaa","url = " + mDataList.get(position).getImgUrl());
-        GetUrlImageUtils.getUrlImage(mDataList.get(position).getImgUrl(), new GetUrlImageUtils.UrlImageCallback() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                RoundedBitmapDrawable rbd = RoundedBitmapDrawableFactory.create(mContext.getResources(),bitmap);
-                rbd.setCornerRadius(mContext.getResources().getDimension(R.dimen.dp_5));
-//                holder.imageView.setImageBitmap(bitmap);
-                holder.imageView.setImageDrawable(rbd);
-            }
+        Glide.with(mContext)
+                .load(mDataList.get(position).getImgUrl())
+                .apply(GlideOptionsUtils.DisableDiskCache)
+                .into(holder.imageView);
 
-            @Override
-            public void onFailed(String error) {
-
-            }
-        });
         holder.tvName.setText(mDataList.get(position).getName());
         holder.tvAddress.setText(mDataList.get(position).getProvince()+mDataList.get(position).getCity()+mDataList.get(position).getDistrict()
                 +mDataList.get(position).getDetail());
@@ -65,25 +49,15 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.ViewHolder
          * 判断热度
          */
         int hot = mDataList.get(position).getHot();
-        if(hot < 0){
-            hot = 0;
-        }else if(hot > 5){
-            hot = 5;
-        }
         int hotId = mContext.getResources().getIdentifier("hot" + hot,"mipmap",mContext.getPackageName());
         holder.ivHot.setImageResource(hotId);
         /**
          * 添加标签
          */
-        for(int i=0;i<mDataList.get(position).getLabel().size();i++){
+        holder.linearLayout_label.removeAllViews();
+        for(int i=0;i<mDataList.get(position).getLabels().size();i++){
             TextView tv = (TextView) LayoutInflater.from(mContext).inflate(R.layout.view_home_label,null);
-            tv.setText(mDataList.get(position).getLabel().get(i));
-//            tv.setTextSize(mContext.getResources().getDimension(R.dimen.sp_11));
-//            tv.setTextColor(Color.WHITE);
-//            tv.setBackground(mContext.getResources().getDrawable(R.drawable.bg_home_item_label));
-//            int x = (int) mContext.getResources().getDimension(R.dimen.dp_2);
-//            tv.setPadding(x,x,x,x);
-//            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tv.getLayoutParams();
+            tv.setText(mDataList.get(position).getLabels().get(i));
             if(i > 0){
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                 lp.setMargins((int) mContext.getResources().getDimension(R.dimen.dp_5),0,0,0);
@@ -121,9 +95,6 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.ViewHolder
         private TextView tvAddress;
         private TextView tvNumber;
         private LinearLayout linearLayout_label;
-        private TextView tvLabel1;
-        private TextView tvLabel2;
-        private TextView tvLabel3;
         private LinearLayout item;
 
         public ViewHolder(View itemView) {
@@ -135,9 +106,6 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.ViewHolder
             tvNumber = itemView.findViewById(R.id.tvNumber);
             item = itemView.findViewById(R.id.item);
             linearLayout_label = itemView.findViewById(R.id.linearLayout_label);
-//            tvLabel1 = itemView.findViewById(R.id.tvLabel1);
-//            tvLabel2 = itemView.findViewById(R.id.tvLabel2);
-//            tvLabel3 = itemView.findViewById(R.id.tvLabel3);
         }
     }
 }

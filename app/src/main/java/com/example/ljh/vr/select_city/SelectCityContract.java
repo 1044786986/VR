@@ -13,10 +13,7 @@ import java.util.List;
 
 public class SelectCityContract{
     interface SelectCityView extends BaseView{
-        void addHotCityView(List<String> list);
-        void addRecentlyCityView(List<String> list);
-        void addView(List<String> list, LinearLayout linearLayout);
-        void addCitySelectListener(TextView tv,String city);
+        void onSelectCity(String city);
     }
 
     interface SelectCityPresenter{
@@ -25,14 +22,16 @@ public class SelectCityContract{
         void moveToPos(int pos,RecyclerView recyclerView);
         void getHotCity();
         void getRecentlyCity();
+        void addRecentlyCity(String city);
     }
 
     interface SelectCityModel{
         void getHotCity(MyRetrofitCallback callback);
+        void addRecentlyCity(String city);
     }
 
     public interface OnSelectCityListener {
-        void onSelect(String city);
+        void onSelectCity(String city);
         void onScrollLetter(int pos);
     }
 }

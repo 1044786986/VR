@@ -36,13 +36,19 @@
         android:layout_height="match_parent">
     </android.support.v4.view.ViewPager>
 
-    <ImageView
+    <!--<ImageView-->
+        <!--android:id="@+id/ivNothing"-->
+        <!--android:visibility="gone"-->
+        <!--android:src="@mipmap/nothing_data_tip"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_width="@dimen/dp_150"-->
+        <!--android:layout_height="@dimen/dp_150" />-->
+    <ViewStub
         android:id="@+id/ivNothing"
-        android:visibility="gone"
-        android:src="@mipmap/nothing_data_tip"
+        android:layout="@layout/iv_nothing_data_tip"
         android:layout_centerInParent="true"
-        android:layout_width="@dimen/dp_150"
-        android:layout_height="@dimen/dp_150" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ProgressBar
         android:id="@+id/progressBar"

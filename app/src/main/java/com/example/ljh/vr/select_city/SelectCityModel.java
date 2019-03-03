@@ -2,9 +2,12 @@ package com.example.ljh.vr.select_city;
 
 import com.example.ljh.vr._base.MyRetrofitCallback;
 import com.example.ljh.vr.utils.RetrofitUtils;
+import com.example.ljh.vr.utils.SQLiteHelper;
+import com.example.ljh.vr.utils.ThreadPoolUtils;
 import com.socks.library.KLog;
 
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -41,5 +44,15 @@ public class SelectCityModel implements SelectCityContract.SelectCityModel {
 
                     }
                 });
+    }
+
+    @Override
+    public void addRecentlyCity(final String city) {
+        ThreadPoolUtils.getInstance().execute(new Runnable() {
+            @Override
+            public void run() {
+                SQLiteHelper.getInstance().addRecentlyCity(city);
+            }
+        });
     }
 }

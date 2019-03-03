@@ -5,12 +5,15 @@ import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.ljh.vr.R;
 import com.socks.library.KLog;
 
 public class MyApplication extends Application{
-    public static final int SHARE_HEADER_SIZE = 20;
+    public static final int SHARE_HEADER_SIZE = 20; //分享页面头像图片尺寸
     public static final int NORMAL_NORMAL_PICTURE_SIZE = 200;
     public static final int NORMAL_SMALL_PICTURE_SIZE = 50;
+    public static final int GLIDE_LOAD_FAILED_IMG = R.mipmap.load_img_failed_gray_300;
+    public static final int GLIDE_LOADING_IMG = R.mipmap.image_loading_gray_300;
 
     private static Application application;
     public static int activityCount = 0;
@@ -23,12 +26,12 @@ public class MyApplication extends Application{
         @Override
         public void onActivityStarted(Activity activity) {
             activityCount++;
-            Log.i("aaa","MyApplication.onActivityStart()");
+//            Log.i("aaa","MyApplication.onActivityStart()");
         }
 
         @Override
         public void onActivityResumed(Activity activity) {
-            Log.i("aaa","MyApplication.onActivityResumed()");
+//            Log.i("aaa","MyApplication.onActivityResumed()");
         }
 
         @Override
@@ -38,7 +41,7 @@ public class MyApplication extends Application{
 
         @Override
         public void onActivityStopped(Activity activity) {
-            Log.i("aaa","MyApplication.onActivityStop()");
+//            Log.i("aaa","MyApplication.onActivityStop()");
             activityCount--;
             if(activityCount == 0){
 
@@ -59,7 +62,6 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        KLog.i("Application.onCreate()");
         application = this;
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
 //        if (LeakCanary.isInAnalyzerProcess(this)) {

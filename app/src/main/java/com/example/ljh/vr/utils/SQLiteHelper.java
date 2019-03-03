@@ -1,5 +1,6 @@
 package com.example.ljh.vr.utils;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -53,7 +54,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public List<String> getRecentlyCity() {
         mSqliteDatabase = mSQLiteHelper.getReadableDatabase();
-        Cursor cursor = mSqliteDatabase.rawQuery("SELECT * FROM recently_city LIMIT 3", null);
+        Cursor cursor = mSqliteDatabase.rawQuery("SELECT * FROM recently_city ORDER BY _id DESC", null);
         List<String> list = new ArrayList<>();
         while (cursor.moveToNext()) {
             list.add(cursor.getString(cursor.getColumnIndex("city")));
@@ -69,8 +70,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         if(count == 9){
             mSqliteDatabase.execSQL("DELETE FROM recently_city ORDER BY _id LIMIT 1");
         }
-        String sql = "INSERT INTO recently VALUES('','" + city + "')";
-        mSqliteDatabase.execSQL(sql, null);
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("city",city);
+        mSqliteDatabase.insert("recently_city",null,contentValues);
         mSqliteDatabase.close();
     }
 

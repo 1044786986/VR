@@ -2,6 +2,7 @@ package com.example.ljh.vr.share;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,12 +17,12 @@ import butterknife.BindView;
 public class ShareFragment extends BaseFragment implements ShareContract.ShareView {
     @BindView(R.id.rvShare)
     protected RecyclerView mRvShare;
-    @BindView(R.id.progressBar)
-    protected ProgressBar mProgressBar;
     @BindView(R.id.ivWrite)
     protected ImageView mIvWrite;
     @BindView(R.id.ivNothing)
-    protected ImageView ivNothing;
+    protected ImageView mIvNothing;
+    @BindView(R.id.swipeRefreshLayoutShare)
+    protected SwipeRefreshLayout mSwipeRefreshLayoutShare;
 
     private SharePresenter mSharePresenter;
 
@@ -39,7 +40,11 @@ public class ShareFragment extends BaseFragment implements ShareContract.ShareVi
     @Override
     public void initView(View view) {
         mSharePresenter.initRvAdapter(mRvShare);
+        mSwipeRefreshLayoutShare.setRefreshing(true);
 
+        /**
+         * 发表分享
+         */
         mIvWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,11 +52,18 @@ public class ShareFragment extends BaseFragment implements ShareContract.ShareVi
                 getContext().startActivity(intent);
             }
         });
+
+        mSwipeRefreshLayoutShare.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSharePresenter.getData();
+            }
+        });
     }
 
     @Override
     public void initData() {
-//        mSharePresenter.getData();
+        mSharePresenter.getData();
     }
 
     @Override
@@ -61,17 +73,17 @@ public class ShareFragment extends BaseFragment implements ShareContract.ShareVi
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mSwipeRefreshLayoutShare.setRefreshing(false);
     }
 
     @Override
     public void showNullTip() {
-        ivNothing.setVisibility(View.VISIBLE);
+        mIvNothing.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideNullTip() {
-        ivNothing.setVisibility(View.GONE);
+        mIvNothing.setVisibility(View.GONE);
     }
 
     @Override

@@ -16,6 +16,7 @@ public class HomePresenter extends BasePresenter implements HomeContract.HomePre
     private HomeContract.HomeView mHomeView;
     private HomeContract.HomeModel mHomeModel;
 
+    private String mCurCity;
     private List<HomeRvBean> mDataList;
     private HomeRvAdapter mHomeRvAdapter;
     private LoadMoreWrapper mAdapter;
@@ -34,6 +35,15 @@ public class HomePresenter extends BasePresenter implements HomeContract.HomePre
         recyclerView.setLayoutManager(new LinearLayoutManager(mHomeView.getMyContext()));
         mAdapter = new LoadMoreWrapper(mHomeRvAdapter);
         recyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void getData() {
+        if(mCurCity == null || mCurCity.equals("")){
+            getRecommendData();
+        }else{
+            getCityData();
+        }
     }
 
     @Override
@@ -67,10 +77,11 @@ public class HomePresenter extends BasePresenter implements HomeContract.HomePre
         });
     }
 
+
+
     @Override
-    public void getCityData(String city) {
-        mHomeView.showProgressBar();
-        mHomeModel.getCityData(city, new MyRetrofitCallback() {
+    public void getCityData() {
+        mHomeModel.getCityData(mCurCity, new MyRetrofitCallback() {
             @Override
             public void onSuccess(Object o) {
                 if(checkViewNull()){
@@ -97,5 +108,10 @@ public class HomePresenter extends BasePresenter implements HomeContract.HomePre
                 ShowTipUtils.toastShort(mHomeView.getMyContext(),error);
             }
         });
+    }
+
+    @Override
+    public void setCurCity(String city) {
+        mCurCity = city;
     }
 }

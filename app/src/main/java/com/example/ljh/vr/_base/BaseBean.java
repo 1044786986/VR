@@ -1,10 +1,14 @@
 package com.example.ljh.vr._base;
 
-public class BaseBean{
+public class BaseBean<T>{
     private int code;
     private String error;
 //    private T data;
-    private Object data;
+    private T data;
+
+    public BaseBean(T data){
+        this.data = data;
+    }
 
     public String getError() {
         return error;
@@ -18,7 +22,7 @@ public class BaseBean{
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

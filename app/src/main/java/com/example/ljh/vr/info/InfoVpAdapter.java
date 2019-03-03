@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.ljh.vr.R;
 import com.example.ljh.vr.utils.CompressUtils;
 import com.example.ljh.vr.utils.GetUrlImageUtils;
+import com.example.ljh.vr.utils.GlideOptionsUtils;
+import com.example.ljh.vr.utils.glide.CenterCropFactory;
+import com.example.ljh.vr.utils.glide.CenterCropOptions;
 import com.socks.library.KLog;
 
 import java.util.ArrayList;
@@ -49,21 +53,13 @@ public class InfoVpAdapter extends PagerAdapter {
             return imageView;
         }
         final ImageView imageView = (ImageView) LayoutInflater.from(mContext).inflate(R.layout.imageview_info_viewpager,null,false);
-        GetUrlImageUtils.getUrlImage(mUrlStringList.get(position), new GetUrlImageUtils.UrlImageCallback() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bitmap = CompressUtils.getInstance(mContext).compress(bytes,((InfoContract.InfoView)mContext).getViewPagerWidth(),
-                        ((InfoContract.InfoView)mContext).getViewPagerHeight(),0);
-                imageView.setImageBitmap(bitmap);
-                container.addView(imageView);
-                mViewList.add(imageView);
-            }
+        Glide.with(mContext)
+                .load(mUrlStringList.get(position))
+                .apply(new CenterCropFactory().getGlideOptions().getOptions())
+                .into(imageView);
+        container.addView(imageView);
+        mViewList.add(imageView);
 
-            @Override
-            public void onFailed(String error) {
-                KLog.i("aaa",error);
-            }
-        });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

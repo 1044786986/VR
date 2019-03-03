@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ljh.vr.R;
 import com.example.ljh.vr._application.KeyApp;
 import com.example.ljh.vr._base.BasePresenter;
@@ -13,7 +14,10 @@ import com.example.ljh.vr._base.BaseView;
 import com.example.ljh.vr._base.MyRetrofitCallback;
 import com.example.ljh.vr.utils.CompressUtils;
 import com.example.ljh.vr.utils.GetUrlImageUtils;
+import com.example.ljh.vr.utils.GlideOptionsUtils;
 import com.example.ljh.vr.utils.ShowTipUtils;
+import com.example.ljh.vr.utils.glide.ScaleSizeW2H1Factory;
+import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,7 @@ public class InfoPresenter extends BasePresenter implements InfoContract.InfoPre
     private InfoVpAdapter mInfoVpAdapter;
 
     private int mCurX = 0;
-    private String mCurId;
+    private int mCurId;
 
     public InfoPresenter(BaseView baseView) {
         super(baseView);
@@ -59,7 +63,7 @@ public class InfoPresenter extends BasePresenter implements InfoContract.InfoPre
 
     @Override
     public void getData(Intent intent) {
-        mCurId = intent.getStringExtra(KeyApp.INTENT_KEY_INFO);
+        mCurId = intent.getIntExtra(KeyApp.INTENT_KEY_INFO,0);
         mInfoModel.getData(mCurId, new MyRetrofitCallback() {
             @Override
             public void onSuccess(Object o) {
@@ -78,6 +82,7 @@ public class InfoPresenter extends BasePresenter implements InfoContract.InfoPre
                 /**
                  * 填入viewPager
                  */
+                mImgUrlList.clear();
                 for(int i=0;i<infoBean.getImgUrls().size();i++){
                     mImgUrlList.add(infoBean.getImgUrls().get(i));
                 }
@@ -102,35 +107,22 @@ public class InfoPresenter extends BasePresenter implements InfoContract.InfoPre
              String content[] = new String[2];
              content[1] = s;
              if(s.contains("http://") || s.contains("https://")){
-//                 content[0] = "img";
                  final ImageView iv = LayoutInflater.from(mInfoView.getMyContext()).
                          inflate(R.layout.iv_info_introduce,null,false).findViewById(R.id.imageView);
 
                  mInfoView.addIntroduce(iv);
-                 GetUrlImageUtils.getUrlImage(s, new GetUrlImageUtils.UrlImageCallback() {
-                     @Override
-                     public void onSuccess(byte[] bytes) {
-                         iv.setImageBitmap(CompressUtils.getInstance(mInfoView.getMyContext()).compress(bytes,iv.getWidth(),iv.getHeight(),0));
-                     }
 
-                     @Override
-                     public void onFailed(String error) {
-
-                     }
-                 });
+                 Glide.with(mInfoView.getMyContext())
+                         .load(s)
+                         .apply(new ScaleSizeW2H1Factory().getGlideOptions().getOptions())
+                         .into(iv);
              }else{
-//                 content[0] = "text";
                  TextView tv = LayoutInflater.from(mInfoView.getMyContext()).
                          inflate(R.layout.tv_info_intruduce,null,false).findViewById(R.id.textView);
                  tv.setText(s);
                  mInfoView.addIntroduce(tv);
              }
-//             introduceList.add(content);
          }
-
-//         for(String[] s : introduceList){
-//
-//         }
     }
 
     @Override

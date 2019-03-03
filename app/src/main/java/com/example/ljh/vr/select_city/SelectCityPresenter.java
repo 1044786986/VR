@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
@@ -16,6 +17,7 @@ import com.example.ljh.vr._base.MyRetrofitCallback;
 import com.example.ljh.vr.ui.HeaderAndFooter;
 import com.example.ljh.vr.ui.LoadMoreWrapper;
 import com.example.ljh.vr.utils.SQLiteHelper;
+import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,16 +27,14 @@ import java.util.Map;
 public class SelectCityPresenter extends BasePresenter implements SelectCityContract.SelectCityPresenter {
     private SelectCityContract.SelectCityView mSelectCityView;
     private SelectCityContract.SelectCityModel mSelectCityModel;
-    private SelectCityContract.OnSelectCityListener mSelectCityListener;
 
-    private SelectCityRvAdapter mSelectCityRvAdapter;
-    private HeaderAndFooter mHeaderAndFooterAdapter;
+    private SelectCityRvAdapter mSelectCityRvAdapter;//城市列表适配器
+    private HeaderAndFooter mHeaderAndFooterAdapter;//
 
-    private List<Map<String, String>> mHotCityList = new ArrayList<>();
-    private List<Map<String, String>> mRecentlyList = new ArrayList<>();
-
-    private SimpleAdapter mHotCityAdapter;
-    private SimpleAdapter mRecentlyAdapter;
+    private List<Map<String, String>> mHotCityList = new ArrayList<>(); //热门城市
+    private List<Map<String, String>> mRecentlyList = new ArrayList<>();//最近访问城市
+    private SimpleAdapter mHotCityAdapter;//热门城市gridView适配器
+    private SimpleAdapter mRecentlyAdapter;//最近访问城市gridView适配器
 
 
     public SelectCityPresenter(BaseView baseView) {
@@ -68,37 +68,49 @@ public class SelectCityPresenter extends BasePresenter implements SelectCityCont
         mRecentlyAdapter = new SimpleAdapter(mSelectCityView.getMyContext(), mRecentlyList, R.layout.tv_city_name,
                 new String[]{"text"}, new int[]{R.id.tvCity});
         gdRecently.setAdapter(mRecentlyAdapter);
+
+        gdHotCity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                KLog.i("aaa","hotcity + " + position);
+                String city = mHotCityList.get(position).get("text");
+                mSelectCityView.onSelectCity(city);
+            }
+        });
+
+        gdRecently.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String city = mRecentlyList.get(position).get("text");
+                mSelectCityView.onSelectCity(city);
+            }
+        });
     }
 
+    /**
+     * 列表移动到指定位置
+     *
+     * @param pos
+     * @param recyclerView
+     */
     @Override
     public void moveToPos(int pos, RecyclerView recyclerView) {
-//        recyclerView.scrollToPosition(mRvAdapter.getLetterPos()[pos]);
         int target = mSelectCityRvAdapter.getLetterPos()[pos];
         LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
         int firstItem = linearLayoutManager.findFirstVisibleItemPosition();
         int lastItem = linearLayoutManager.findLastVisibleItemPosition();
         int offest = lastItem - firstItem - 1;
         if (target > lastItem) {
-//            int offest = target - lastItem;
             target += offest;
         }
         recyclerView.scrollToPosition(target);
-//        if(pos <= firstItem){
-//            recyclerView.scrollToPosition(pos);
-//        }
     }
 
+    /**
+     * 获取热门城市数据
+     */
     @Override
     public void getHotCity() {
-//        List<String> list = new ArrayList<>();
-//        list.add("广州市");
-//        list.add("阿尔卑斯市");
-//        list.add("佛山市");
-//        list.add("重庆市");
-////        list.add("非洲大裂谷");
-//        list.add("广东广州");
-//        list.add("厦门市");
-//        mSelectCityView.addHotCityView(list);
         mSelectCityModel.getHotCity(new MyRetrofitCallback() {
             @Override
             public void onSuccess(Object o) {
@@ -107,9 +119,9 @@ public class SelectCityPresenter extends BasePresenter implements SelectCityCont
                 }
                 List<String> list = (List<String>) o;
                 mHotCityList.clear();
-                for(int i=0;i<list.size();i++){
-                    Map<String,String> map = new HashMap<>();
-                    map.put("text",list.get(i));
+                for (int i = 0; i < list.size(); i++) {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("text", list.get(i));
                     mHotCityList.add(map);
                 }
                 mHotCityAdapter.notifyDataSetChanged();
@@ -124,22 +136,23 @@ public class SelectCityPresenter extends BasePresenter implements SelectCityCont
         });
     }
 
+    /**
+     * 获取最近访问城市
+     */
     @Override
     public void getRecentlyCity() {
-//        SQLiteHelper helper = new SQLiteHelper(mSelectCityView.getMyContext(),null);
-//        List<String> list = helper.getRecentlyCity();
-//        List<String> list = new ArrayList<>();
-//        list.add("广州市");
-//        list.add("阿尔卑斯市");
-//        list.add("厦门市");
-//        mSelectCityView.addRecentlyCityView(list);
         mRecentlyList.clear();
         List<String> list = SQLiteHelper.getInstance().getRecentlyCity();
         for (int i = 0; i < list.size(); i++) {
-            Map<String,String> map = new HashMap<>();
-            map.put("text",list.get(i));
+            Map<String, String> map = new HashMap<>();
+            map.put("text", list.get(i));
             mRecentlyList.add(map);
         }
         mRecentlyAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addRecentlyCity(String city) {
+        mSelectCityModel.addRecentlyCity(city);
     }
 }

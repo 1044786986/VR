@@ -10,6 +10,8 @@ public class MainContract {
         void changeColor(int pos);                  //改变底部导航栏颜色
         void setAllNormal();                        //初始化底部栏所有颜色
         void showBottomNavigation();
+        void showStatusBar();
+        void hideStatusBar();
 //        void hideBottomNavigation();
         FragmentManager getMyFragmentManager();
     }

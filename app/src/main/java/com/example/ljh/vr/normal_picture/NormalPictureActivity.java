@@ -13,8 +13,7 @@ import com.example.ljh.vr.ui.SlideBack;
 
 import butterknife.BindView;
 
-public class NormalPictureActivity extends BaseActivity implements NormalPictureContract.NormalPictureView,
-        NormalPictureContract.OnProgressBarListener {
+public class NormalPictureActivity extends BaseActivity implements NormalPictureContract.NormalPictureView,NormalPictureContract.OnProgressBarListener {
     private NormalPicturePresenter  mNormalPicturePresenter;
 
     @BindView(R.id.vpNormalPicture)
@@ -31,12 +30,8 @@ public class NormalPictureActivity extends BaseActivity implements NormalPicture
 
     @Override
     public void initView() {
-//        SlideBack slideBack = new SlideBack(this);
-//        slideBack.attach();
-
         mNormalPicturePresenter.getIntent(getIntent());
         mNormalPicturePresenter.initVpAdapter(mVpNormalPicture);
-
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
